@@ -14,31 +14,7 @@
     <jsp:include page="header.jsp"/>
 
     <div class="container">
-        <ul>
-            <c:forEach items="${productList}" var="product" varStatus="status">
-            <li <c:if test="${status.index eq 0}" >class="fir"</c:if>>
-                <a href="<%--/shop/detail.php?hash=G02DA--%>" class="p_subject_item">
-                    <div class="thumb">
-                        <img src="${product.imageUrl}" alt="${product.productName}">
-                    </div>
-                    <dl class="p_info">
-                        <dt class="p_name">${product.productNameKr}</dt>
-                        <dd class="p_desc">${product.descText}</dd>
-                        <dd class="p_price">
-                            <span class="n_price">8,300</span>
-                            <strong class="p_price_txt">${product.price}<span class="p_price_unit">원</span></strong>
-                        </dd>
-                        <dd class="badge_area">
-                            <span class="badge best">베스트</span>
-                            <c:if test="${status.index eq 2}">
-                                <span class="badge event">이벤트특가</span>
-                            </c:if>
-                        </dd>
-                    </dl>
-                </a>
-            </li>
-            </c:forEach>
-        </ul>
+        MAIN
     </div>
 
 <script src="/js/bootstrap.min.js"></script>
