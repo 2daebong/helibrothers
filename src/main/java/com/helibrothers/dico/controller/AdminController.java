@@ -1,4 +1,4 @@
-package com.helibrothers.dico.admin.controller;
+package com.helibrothers.dico.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -6,17 +6,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Created by LeeDaebeom-Mac on 2016. 9. 3..
+ * Created by LeeDaebeom-Mac on 2016. 8. 25..
  */
 @Controller
-public class WebController {
+public class AdminController {
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/index", method = RequestMethod.GET)
     public ModelAndView index() {
         ModelAndView mv = new ModelAndView();
 
-        mv.setViewName("mweb/index");
+        mv.setViewName("admin/index");
 
         return mv;
     }
+
 }

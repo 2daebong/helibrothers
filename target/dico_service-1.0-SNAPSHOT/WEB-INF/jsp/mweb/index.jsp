@@ -14,7 +14,7 @@
     <jsp:include page="header.jsp"/>
 
     <div class="container">
-        MAIN
+
     </div>
 
 <script src="/js/bootstrap.min.js"></script>
