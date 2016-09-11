@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="/css/header.css" rel="stylesheet">
     <link href="/css/shop.css" rel="stylesheet">
 </head>
@@ -110,8 +110,8 @@
     </div>
 </div>
 
-<script src="/js/jquery-1.12.2.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+<script src="/lib/jquery/jquery-1.12.2.min.js"></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 
 

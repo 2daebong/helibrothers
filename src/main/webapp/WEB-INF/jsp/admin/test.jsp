@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="/css/header.css" rel="stylesheet">
 </head>
 <body>
@@ -60,7 +60,7 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
+<script src="/lib/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         <c:forEach items="${productList}" var="item" varStatus="status">
