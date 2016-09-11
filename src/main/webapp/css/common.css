@@ -642,9 +642,10 @@ body {
     opacity: .7;
     margin-bottom: 0px;
     position: fixed;
-    bottom: 40px;
+    bottom:0px;
     left: 0px;
     width: 100%;
+    z-index: 999;
 }
 
 .modal-dialog {
@@ -735,8 +736,8 @@ body {
 .cart-list-total {
     padding: 0px 10px 10px 10px;
     position: fixed;
-    bottom: 40px;
-    left: 0px;
+    bottom: 0;
+    left: 0;
     width: 100%;
     z-index: 1;
     background-color: #f5f5f5;
