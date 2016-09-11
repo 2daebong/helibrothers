@@ -404,4 +404,38 @@
 <!-- end of section 2 -->
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="itemModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">상품 주문</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="selelctItem">수량을 선택하세요.</label>
+                    <select class="form-control" id="selelctItem">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">주문하기</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">취소하기</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <jsp:include page="common/footer.jsp"/>
