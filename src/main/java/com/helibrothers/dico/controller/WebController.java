@@ -14,8 +14,31 @@ public class WebController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView index() {
         ModelAndView mv = new ModelAndView();
-
         mv.setViewName("mweb/index");
+
+        return mv;
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public ModelAndView login() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("mweb/login");
+
+        return mv;
+    }
+
+    @RequestMapping(value = "/cartList", method = RequestMethod.GET)
+    public ModelAndView cartList() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("mweb/cartList");
+
+        return mv;
+    }
+
+    @RequestMapping(value = "/orderList", method = RequestMethod.GET)
+    public ModelAndView orderList() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("mweb/orderList");
 
         return mv;
     }
