@@ -35,22 +35,22 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.html">야채사요</a>
+                <a class="navbar-brand" href="/">야채사요</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="index.html">HOME</a>
+                        <a href="/">HOME</a>
                     </li>
                     <li>
                         <a href="#about">야채사요 소개</a>
                     </li>
                     <li>
-                        <a href="cartList.html">장바구니</a>
+                        <a href="cartList">장바구니</a>
                     </li>
                     <li>
-                        <a href="login.html">로그인</a>
+                        <a href="login">로그인</a>
                         <!-- <a href="logout.html">Log out</a> -->
                     </li>
                 </ul>

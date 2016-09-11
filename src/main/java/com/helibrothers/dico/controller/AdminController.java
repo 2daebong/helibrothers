@@ -20,4 +20,49 @@ public class AdminController {
         return mv;
     }
 
+    @RequestMapping(value = "/admin/shop", method = RequestMethod.GET)
+    public ModelAndView shop() {
+        ModelAndView mv = new ModelAndView();
+
+        mv.setViewName("admin/shop");
+
+        return mv;
+    }
+
+    @RequestMapping(value = "/admin/order", method = RequestMethod.GET)
+    public ModelAndView order() {
+        ModelAndView mv = new ModelAndView();
+
+        mv.setViewName("admin/order");
+
+        return mv;
+    }
+
+    @RequestMapping(value = "/admin/product", method = RequestMethod.GET)
+    public ModelAndView product() {
+        ModelAndView mv = new ModelAndView();
+
+        mv.setViewName("admin/product");
+
+        return mv;
+    }
+
+    @RequestMapping(value = "/admin/user", method = RequestMethod.GET)
+    public ModelAndView user() {
+        ModelAndView mv = new ModelAndView();
+
+        mv.setViewName("admin/user");
+
+        return mv;
+    }
+
+    @RequestMapping(value = "/admin/test", method = RequestMethod.GET)
+    public ModelAndView test() {
+        ModelAndView mv = new ModelAndView();
+
+        mv.setViewName("admin/test");
+
+        return mv;
+    }
+
 }

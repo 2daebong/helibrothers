@@ -9,16 +9,16 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">DICO ADMIN</a>
+            <a class="navbar-brand" href="/admin/index">DICO ADMIN</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home</a></li>
-                <li><a href="/shop">매장</a></li>
-                <li><a href="/product">상품</a></li>
-                <li><a href="/user">사용자</a></li>
-                <li><a href="/order">주문</a></li>
-                <li><a href="/test">실험실</a></li>
+                <li class="active"><a href="/admin/index">Home</a></li>
+                <li><a href="/admin/shop">매장</a></li>
+                <li><a href="/admin/product">상품</a></li>
+                <li><a href="/admin/user">사용자</a></li>
+                <li><a href="/admin/order">주문</a></li>
+                <li><a href="/admin/test">실험실</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
