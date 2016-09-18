@@ -14,7 +14,7 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/admin/index">Home</a></li>
-                <li><a href="/admin/shop">매장</a></li>
+                <%--<li><a href="/admin/shop">매장</a></li>--%>
                 <li><a href="/admin/product">상품</a></li>
                 <li><a href="/admin/user">사용자</a></li>
                 <li><a href="/admin/order">주문</a></li>

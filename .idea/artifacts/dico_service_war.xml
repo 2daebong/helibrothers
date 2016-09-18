@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="dico_service:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="dico_service-1.0-SNAPSHOT.war">
-      <element id="artifact" artifact-name="dico_service:war exploded" />
-    </root>
-  </artifact>
-</component>

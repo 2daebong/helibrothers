@@ -26,16 +26,16 @@
                 <td>재고</td>
                 <td> </td>
             </tr>
-            <c:forEach var="item" items="${productList}">
-                <tr class="clickable-row" onclick="detailView(${item.productNo})">
-                    <td>${item.productNo}</td>
+            <c:forEach var="item" items="${items}">
+                <tr class="clickable-row" onclick="detailView(${item.id})">
+                    <td>${item.id}</td>
                     <td><img src="${item.imageUrl}" width="140px" height="140px"></td>
-                    <td>${item.productCategory.nameKr}</td>
-                    <td>${item.productNameKr}</td>
+                    <td>${item.category.nameKr}</td>
+                    <td>${item.name}</td>
                     <td>${item.registYmdt}</td>
                     <td><input style="width:70px" value="${item.price}" class="form-control">원</td>
-                    <td><input style="width:60px" value="${item.stock}" class="form-control">${item.unit}</td>
-                    <td><button class="form-control btn_del" data-no="${item.productNo}">삭제</button></td>
+                    <td><input style="width:60px" value="${item.stockQuantity}" class="form-control">${item.stockUnitCd.nameKr}</td>
+                    <td><button class="form-control btn_del" data-no="${item.id}">삭제</button></td>
                 </tr>
             </c:forEach>
         </table>
@@ -56,7 +56,7 @@
                     <form id="register_product_form">
                         <div class="form-group">
                             <form>
-                                <input hidden="true" id="productNo">
+                                <input hidden="true" id="itemId">
                                 <div class="form-group">
                                     <img src="" width="215px", height="215px" id="preview_image">
                                     <label for="imageFileInput">상품 사진 <br>215x215 사이즈에 최적화 되어 있습니다.</label>
@@ -67,7 +67,7 @@
                                     <label for="category">카테고리</label>
                                     <select id="category" class="form-control">
                                         <option value="-1">카테고리</option>
-                                        <c:forEach items="${categoryList}" var="category">
+                                        <c:forEach items="${categories}" var="category">
                                             <option value="${category}">${category.nameKr}</option>
                                         </c:forEach>
                                     </select>
@@ -76,25 +76,21 @@
                                     <label class="control-label" for="name">상품명</label>
                                     <input type="text" class="form-control" id="name" placeholder="상품명">
                                 </div>
-                                <div class="form-group">
-                                    <label for="nameKr">상품명(한글)</label>
-                                    <input type="text" class="form-control" id="nameKr">
-                                </div>
                                 <div>
-                                    <label for="stock">재고</label>
-                                    <input type="text" id="stock">
+                                    <label for="stockQuantity">재고</label>
+                                    <input type="text" id="stockQuantity">
                                 </div>
                                 <div>
                                     <label for="price">가격</label>
                                     <input type="text" id="price">
                                 </div>
                                 <div>
-                                    <label for="unit">단위</label>
-                                    <input type="text" id="unit">
+                                    <label for="stockUnitCd">단위</label>
+                                    <input type="text" id="stockUnitCd">
                                 </div>
                                 <div>
-                                    <label for="desc">상품 설명</label>
-                                    <textarea id="desc" class="form-control" rows="3"></textarea>
+                                    <label for="itemDesc">상품 설명</label>
+                                    <textarea id="itemDesc" class="form-control" rows="3"></textarea>
                                 </div>
                             </form>
                         </div>
@@ -195,7 +191,7 @@
         var descText = escape($('#desc').val());
 
         var data = {
-            productNo: $('#productNo').val(),
+            itemId: $('#itemId').val(),
             productName: $('#name').val(),
             productNameKr: $('#nameKr').val(),
             productCategory: $('#category').val(),
