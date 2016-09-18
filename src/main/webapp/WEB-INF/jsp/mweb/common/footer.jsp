@@ -49,7 +49,6 @@
 
 <!-- End of Common Element Area -->
 <!-- jQuery Plugin -->
-<script src="/lib/jquery/jquery.min.js"></script>
 <script src="/lib/jquery/jquery.bcSwipe.min.js"></script>
 <script src="/lib/jquery/jqBootstrapValidation.js"></script>
 
@@ -57,8 +56,8 @@
 <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- Theme JavaScript -->
-<script src="js/common.js"></script>
-<script src="js/app.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/app.js"></script>
 
 </body>
 </html>
