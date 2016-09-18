@@ -1,5 +1,9 @@
 package com.helibrothers.dico.controller;
 
+import com.helibrothers.dico.core.service.ItemService;
+import com.helibrothers.dico.domain.enums.ItemCategory;
+import com.helibrothers.dico.domain.enums.StockUnitCd;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,6 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class AdminController {
+
+    @Autowired
+    private ItemService itemService;
 
     @RequestMapping(value = "/admin/index", method = RequestMethod.GET)
     public ModelAndView index() {
@@ -41,6 +48,10 @@ public class AdminController {
     @RequestMapping(value = "/admin/product", method = RequestMethod.GET)
     public ModelAndView product() {
         ModelAndView mv = new ModelAndView();
+
+        mv.addObject("items", itemService.findItems());
+        mv.addObject("categories", ItemCategory.values());
+        mv.addObject("stockUnitCds", StockUnitCd.values());
 
         mv.setViewName("admin/product");
 

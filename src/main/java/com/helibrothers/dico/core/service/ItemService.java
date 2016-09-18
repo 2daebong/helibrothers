@@ -16,10 +16,10 @@ import java.util.List;
 public class ItemService {
 
     @Autowired
-    ItemRepository itemRepository;
+    private ItemRepository itemRepository;
 
-    public void saveItem(Item item) {
-        itemRepository.save(item);
+    public Item saveItem(Item item) {
+        return itemRepository.save(item);
     }
 
     public List<Item> findItems() {
@@ -30,7 +30,11 @@ public class ItemService {
         return itemRepository.findOne(itemId);
     }
 
-    public List<Item> findByName(String name) {
-        return itemRepository.findByname(name);
+    public Item findByName(String name) {
+        return itemRepository.findByName(name);
+    }
+
+    public void removeItem(Long itemId) {
+        itemRepository.delete(itemId);
     }
 }

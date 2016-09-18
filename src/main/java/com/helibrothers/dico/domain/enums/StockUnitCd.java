@@ -13,4 +13,12 @@ public enum StockUnitCd {
     StockUnitCd(String nameKr) {
         this.nameKr = nameKr;
     }
+
+    public String getNameKr() {
+        return nameKr;
+    }
+
+    public void setNameKr(String nameKr) {
+        this.nameKr = nameKr;
+    }
 }

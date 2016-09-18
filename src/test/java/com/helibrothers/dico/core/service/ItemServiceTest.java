@@ -31,6 +31,6 @@ public class ItemServiceTest {
 
         itemService.saveItem(item);
 
-        assertEquals(item, itemService.findByName("apple").get(0));
+        assertEquals(item, itemService.findByName("apple"));
     }
 }

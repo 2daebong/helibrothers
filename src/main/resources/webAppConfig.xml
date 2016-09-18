@@ -24,4 +24,14 @@
         <property name="suffix" value=".jsp"/>
         <property name="contentType" value="text/html; charset=UTF-8"/>
     </bean>
+
+    <bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="jacksonMessageConverter" />
+            </list>
+        </property>
+    </bean>
 </beans>

@@ -5,6 +5,7 @@ import com.helibrothers.dico.domain.enums.StockUnitCd;
 import com.helibrothers.dico.exception.NotEnoughStockException;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -141,5 +142,15 @@ public class Item {
 
     public void setSortGroup(int sortGroup) {
         this.sortGroup = sortGroup;
+    }
+
+    @PrePersist
+    void onCreate() {
+        this.setRegistYmdt(new Timestamp((new Date()).getTime()));
+    }
+
+    @PreUpdate
+    void onPersist() {
+        this.setUpdateYmdt(new Timestamp((new Date()).getTime()));
     }
 }
