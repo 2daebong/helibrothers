@@ -158,7 +158,7 @@
                         date.getHours() + "_" +
                         date.getSeconds() + "_" +
                         date.getMilliseconds();
-                var objKey = 'products-img-' + fileSufix; // 중복 피하기 위해
+                var objKey = 'item-img-' + fileSufix; // 중복 피하기 위해
                 var params = {
                     Key: objKey, ContentType: file.type, Body: file, ACL: "public-read"
                 };
@@ -169,7 +169,7 @@
 //                        location.href = "/";
                     } else {
                         // upload success
-                        sImageUrl = bucket.endpoint.href + 'dicos3' + '/item_v1/' + objKey;
+                        sImageUrl = bucket.endpoint.href + 'dicos3' + '/' + objKey;
                         result.innerHTML = '이미지 업로드 성공, ' + sImageUrl;
                     }
                 });
@@ -196,6 +196,7 @@
         var itemDesc = escape($('#itemDesc').val());
 
         var data = {
+            id: $('#itemId').val(),
             name: $('#name').val(),
             category: $('#category').val(),
             imageUrl: sImageUrl,

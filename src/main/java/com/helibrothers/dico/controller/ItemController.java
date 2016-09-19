@@ -24,4 +24,8 @@ public class ItemController {
         itemService.removeItem(id);
     }
 
+    @RequestMapping(value = "/api/item", method = RequestMethod.PUT)
+    public Item updateItem(@RequestBody Item item) {
+        return itemService.updateItem(item);
+    }
 }

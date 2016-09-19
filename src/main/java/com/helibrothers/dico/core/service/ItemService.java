@@ -37,4 +37,8 @@ public class ItemService {
     public void removeItem(Long itemId) {
         itemRepository.delete(itemId);
     }
+
+    public Item updateItem(Item item) {
+        return itemRepository.save(item);
+    }
 }

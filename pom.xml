@@ -51,7 +51,6 @@
             <version>5.2.2.Final</version>
         </dependency>
 
-
         <!-- mysql -->
         <dependency>
             <groupId>mysql</groupId>

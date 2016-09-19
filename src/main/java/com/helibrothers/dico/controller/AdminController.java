@@ -71,6 +71,8 @@ public class AdminController {
     public ModelAndView test() {
         ModelAndView mv = new ModelAndView();
 
+        mv.addObject("items", itemService.findItems());
+
         mv.setViewName("admin/test");
 
         return mv;

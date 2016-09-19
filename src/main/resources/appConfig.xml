@@ -51,7 +51,7 @@
                 <!-- 새버전의 ID 생성 옵션 -->
                 <prop key="hibernate.id.new_generator_mappings">true</prop>
                 <!-- DDL 자동 생성 -->
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.hbm2ddl.auto">validate</prop>
 
                 <!-- *참고 DDL 생성 옵션
                 - create : 기존 DDL을 제거하고 새로 생성한다.
@@ -61,7 +61,6 @@
                 다르면 경고를 남기고 애플리케이션을 실행하지 않는다. 이 설정은 DDL을 변경하지 않는다.
                 -->
             </props>
-
         </property>
     </bean>
 
