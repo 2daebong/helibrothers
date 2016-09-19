@@ -3,16 +3,20 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/tx
-       http://www.springframework.org/schema/tx/spring-tx.xsd">
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/data/jpa
+       http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
-    <tx:annotation-driven/>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <context:component-scan base-package="com.helibrothers.dico"/>
+    <jpa:repositories base-package="com.helibrothers.dico.core.repository" />
 
     <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
@@ -47,7 +51,7 @@
                 <!-- 새버전의 ID 생성 옵션 -->
                 <prop key="hibernate.id.new_generator_mappings">true</prop>
                 <!-- DDL 자동 생성 -->
-                <prop key="hibernate.hbm2ddl.auto">create</prop>
+                <prop key="hibernate.hbm2ddl.auto">validate</prop>
 
                 <!-- *참고 DDL 생성 옵션
                 - create : 기존 DDL을 제거하고 새로 생성한다.
@@ -57,7 +61,6 @@
                 다르면 경고를 남기고 애플리케이션을 실행하지 않는다. 이 설정은 DDL을 변경하지 않는다.
                 -->
             </props>
-
         </property>
     </bean>
 

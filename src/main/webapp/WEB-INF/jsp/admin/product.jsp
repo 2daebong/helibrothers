@@ -35,7 +35,7 @@
                     <td>${item.registYmdt}</td>
                     <td><input style="width:70px" value="${item.price}" class="form-control">원</td>
                     <td><input style="width:60px" value="${item.stockQuantity}" class="form-control">${item.stockUnitCd.nameKr}</td>
-                    <td><button class="form-control btn_del" data-no="${item.id}">삭제</button></td>
+                    <td><button class="form-control btn_del" data-id="${item.id}">삭제</button></td>
                 </tr>
             </c:forEach>
         </table>
@@ -84,9 +84,14 @@
                                     <label for="price">가격</label>
                                     <input type="text" id="price">
                                 </div>
-                                <div>
+                                <div class="form-group">
                                     <label for="stockUnitCd">단위</label>
-                                    <input type="text" id="stockUnitCd">
+                                    <select id="stockUnitCd" class="form-control">
+                                        <option value="-1">단위</option>
+                                        <c:forEach items="${stockUnitCds}" var="unitCd">
+                                            <option value="${unitCd}">${unitCd.nameKr}</option>
+                                        </c:forEach>
+                                    </select>
                                 </div>
                                 <div>
                                     <label for="itemDesc">상품 설명</label>
@@ -153,15 +158,15 @@
                         date.getHours() + "_" +
                         date.getSeconds() + "_" +
                         date.getMilliseconds();
-                var objKey = 'products-img-' + fileSufix; // 중복 피하기 위해
+                var objKey = 'item-img-' + fileSufix; // 중복 피하기 위해
                 var params = {
                     Key: objKey, ContentType: file.type, Body: file, ACL: "public-read"
                 };
                 bucket.putObject(params, function (err, data) {
                     if (err) {
                         result.innerHTML = 'ERROR: ' + err;
-                        alert('facebook 토큰 만료, 로그인 후 재시도 해주세요.');
-                        location.href = "/";
+                        alert('이미지 업로드 에러 \n ' + err);
+//                        location.href = "/";
                     } else {
                         // upload success
                         sImageUrl = bucket.endpoint.href + 'dicos3' + '/' + objKey;
@@ -188,18 +193,17 @@
 
     $('#register_product_form').submit(function (e) {
         e.preventDefault();
-        var descText = escape($('#desc').val());
+        var itemDesc = escape($('#itemDesc').val());
 
         var data = {
-            itemId: $('#itemId').val(),
-            productName: $('#name').val(),
-            productNameKr: $('#nameKr').val(),
-            productCategory: $('#category').val(),
+            id: $('#itemId').val(),
+            name: $('#name').val(),
+            category: $('#category').val(),
             imageUrl: sImageUrl,
-            stock: $('#stock').val(),
+            stockQuantity: $('#stockQuantity').val(),
             price: $('#price').val(),
-            descText: descText,
-            unit: $('#unit').val()
+            itemDesc: itemDesc,
+            stockUnitCd: $('#stockUnitCd').val()
         }
 
         var method = 'POST';
@@ -209,10 +213,11 @@
         }
 
         $.ajax({
-            url: "/api/product",
+            url: "/api/item",
             type: method,
             data: JSON.stringify(data),
-            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
             success: function (data) {
                 alert("등록 되었습니다.");
                 //추가된 항목을 리스트에 추가하기 위해 reload
@@ -225,23 +230,22 @@
     });
 
 
-    function detailView(no) {
+    function detailView(itemId) {
         bIsUpdate = true;
         $('#submitBtn').text('수정');
 
-        <c:forEach var="item" items="${productList}">
-        var descText = unescape('${item.descText}');
-        if(${item.productNo} == no) {
-            $('#productNo').val('${item.productNo}');
-            $('#name').val('${item.productName}');
-            $('#nameKr').val('${item.productNameKr}');
-            $("#category").val('${item.productCategory}').attr("selected", "selected");
+        <c:forEach var="item" items="${items}">
+        var itemDesc = unescape('${item.itemDesc}');
+        if(${item.id} == itemId) {
+            $('#itemId').val('${item.id}');
+            $('#name').val('${item.name}');
+            $("#category").val('${item.category}').attr("selected", "selected");
             $('#preview_image').attr("src", '${item.imageUrl}');
             sImageUrl = '${item.imageUrl}';
-            $('#stock').val('${item.stock}');
+            $('#stockQuantity').val('${item.stockQuantity}');
             $('#price').val('${item.price}');
-            $('#desc').val(descText);
-            $('#unit').val('${item.unit}');
+            $('#itemDesc').val(itemDesc);
+            $('#stockUnitCd').val('${item.stockUnitCd}');
         }
         </c:forEach>
 
@@ -252,15 +256,14 @@
         bIsUpdate = false;
         $('#submitBtn').text('추가');
         $('#name').val('');
-        $('#nameKr').val('');
         $("#category").val('-1').attr("selected", "selected");
         $('#preview_image').attr("src", '');
         sImageUrl = '';
-        $('#stock').val('');
+        $('#stockQuantity').val('');
         $('#price').val('');
-        $('#desc').val('');
-        $('#unit').val('');
-        $('#productNo').val('');
+        $('#itemDesc').val('');
+        $('#stockUnitCd').val('');
+        $('#itemId').val('');
     }
 
 
@@ -268,18 +271,11 @@
         $('.btn_del').on('click', function(e){
             e.stopPropagation();
 
-            var no = $(this).data('no');
-
-            var data = {
-                productNo: no
-            }
-
-            var method = 'DELETE';
+            var id = $(this).data('id');
 
             $.ajax({
-                url: "/api/product",
-                type: method,
-                data: JSON.stringify(data),
+                url: "/api/item/" + id,
+                type: 'DELETE',
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
                     alert("삭제 되었습니다.");

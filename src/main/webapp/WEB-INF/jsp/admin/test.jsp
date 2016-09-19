@@ -34,7 +34,7 @@
         <br>
         <c:forEach var="item" items="${sessionScope.cartItemList}">
             <div style="float: left;">
-                <p>${item.product.productNameKr}</p>
+                <p>${item.product.name}</p>
                 <img src="${item.product.imageUrl}" width="120px" height="120px"/>
                 <p>수량 : ${item.amount}</p>
                 <p>가격 : ${item.amount * item.product.price}원</p>
@@ -43,17 +43,17 @@
     </div>
 
     <div style="margin-top: 50px">
-        <c:forEach items="${productList}" var="item">
+        <c:forEach items="${items}" var="item">
             <div style="float:left; margin-left:20px;">
-                ${item.productNameKr}
+                ${item.name}
                 <br>
                 <img src="${item.imageUrl}" width="215px" height="215px"/><br>
                 가격 : <p style="width:120px" class="form-control" disabled="">${item.price}</p>원
                 <textarea style="width:215px" disabled class="form-control textarea_desc" rows="3"></textarea>
                 <br>
-                수량 선택 : <input id="amount_${item.productNo}" class="form-control" value="0">
+                수량 선택 : <input id="amount_${item.id}" class="form-control" value="0">
                 <br>
-                <button class="btn btn-info" onclick="carting(${item.productNo})">카트에 담기</button>
+                <button class="btn btn-info" onclick="carting(${item.id})">카트에 담기</button>
             </div>
         </c:forEach>
     </div>
@@ -63,8 +63,8 @@
 <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        <c:forEach items="${productList}" var="item" varStatus="status">
-        $('.textarea_desc')[${status.index}].value = unescape('${item.descText}');
+        <c:forEach items="${items}" var="item" varStatus="status">
+        $('.textarea_desc')[${status.index}].value = unescape('${item.itemDesc}');
         </c:forEach>
     });
 
