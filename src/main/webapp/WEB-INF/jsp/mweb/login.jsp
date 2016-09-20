@@ -21,14 +21,10 @@
                 <input type="checkbox" id="auto-login">자동 로그인</label>
         </div>
         <div class="row social-logins">
-            <div class="row mg-15">
+            <div class="row mg-15" id="naver-login">
                 <a class="btn btn-lg btn-social btn-naver">
-                    <img src="/images/social/naver_login.png" width="20" height="20"><span class="btn-divider"></span> 네이버로 로그인
-                </a>
-            </div>
-            <div class="row mg-15">
-                <a class="btn btn-lg btn-social btn-kakao">
-                    <img src="/images/social/kakao_login.png" width="20" height="20"><span class="btn-divider"></span> 카카오로 로그인
+                    <img src="/images/social/naver_login.png" width="20" height="20">
+                    <span class="btn-divider"></span> 네이버로 로그인
                 </a>
             </div>
         </div>
@@ -36,5 +32,12 @@
             <label>회원가입 <span style="padding:0 5px">|</span> 비밀번호 찾기</label>
         </div>
     </div>
+
+    <script>
+        var loginBtn = document.querySelector("#naver-login");
+        loginBtn.onclick = function() {
+            window.location.href = "/naverOauthRedirect";
+        }
+    </script>
 
 <jsp:include page="common/footer.jsp"/>
