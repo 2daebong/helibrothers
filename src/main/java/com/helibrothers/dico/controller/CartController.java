@@ -1,24 +1,40 @@
 package com.helibrothers.dico.controller;
 
 import com.helibrothers.dico.core.service.CartService;
-import com.helibrothers.dico.domain.OrderItem;
+import com.helibrothers.dico.domain.Cart;
+import org.apache.commons.collections.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * Created by LeeDaebeom-Mac on 2016. 9. 20..
  */
-@Controller
+@RestController
 public class CartController {
 
     @Autowired
     private CartService cartService;
 
-//    @RequestMapping(value = "/api/cart", method = RequestMethod.POST)
-//    public OrderItem carting(@RequestBody OrderItem orderItem) {
-//    }
+    @RequestMapping(value = "/api/cart", method = RequestMethod.POST)
+    public Cart putInCart(@RequestBody Map<String, Object> bodyMap, HttpServletRequest request) {
+
+        String userId = MapUtils.getString(bodyMap, "userId");
+        Long itemId = MapUtils.getLong(bodyMap, "itemId");
+        Integer amount = MapUtils.getInteger(bodyMap, "amount");
+
+        Cart userCart = (Cart) request.getSession().getAttribute("cart");
+
+        userCart = cartService.putInCart(userCart, userId, itemId, amount);
+
+        request.getSession().setAttribute("cart", userCart);
+
+        return userCart;
+    }
 
 }

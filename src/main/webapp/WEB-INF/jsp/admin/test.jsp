@@ -32,12 +32,12 @@
             주문하기
         </button>
         <br>
-        <c:forEach var="item" items="${sessionScope.cartItemList}">
+        <c:forEach var="cartItem" items="${sessionScope.cart.cartItemList}">
             <div style="float: left;">
-                <p>${item.product.name}</p>
-                <img src="${item.product.imageUrl}" width="120px" height="120px"/>
-                <p>수량 : ${item.amount}</p>
-                <p>가격 : ${item.amount * item.product.price}원</p>
+                <p>${cartItem.item.name}</p>
+                <img src="${cartItem.item.imageUrl}" width="120px" height="120px"/>
+                <p>수량 : ${cartItem.amount}</p>
+                <p>가격 : ${cartItem.amount * cartItem.item.price}원</p>
             </div>
         </c:forEach>
     </div>
@@ -98,7 +98,7 @@
         var data = {
             'userId' : userId,
             'amount' : amount,
-            'productNo' : productNo
+            'itemId' : productNo
         }
 
 //        console.log(userId + '사용자 , ' + productNo + '번 상품,' + amount + '개 카트 담기 시도.');
