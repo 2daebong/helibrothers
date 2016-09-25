@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
     <title>Clean Blog</title>
     <!-- Bootstrap Core CSS -->
     <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -51,8 +53,11 @@
                         <a href="cartList">장바구니</a>
                     </li>
                     <li>
+                        <% if (session.getAttribute("IS_LOGIN") == null) { %>
                         <a href="login">로그인</a>
-                        <!-- <a href="logout.html">Log out</a> -->
+                        <% } else { %>
+                        <a href="logout">로그아웃</a>
+                        <% } %>
                     </li>
                 </ul>
             </div>
