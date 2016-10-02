@@ -129,8 +129,9 @@ public class WebController {
                 userProfileObject = (JSONObject) responseObject.get("response");
 
                 String userEmail = userProfileObject.get("email").toString();
+                String userId = userService.getUserIdFromEmail(userEmail);
 
-                if (userService.findOne(userEmail) == null) {
+                if (userService.findOne(userId) == null) {
                     User user = new User();
                     UserInfo userInfo = new UserInfo();
 
@@ -138,7 +139,7 @@ public class WebController {
                     userInfo.setPhoneNumber("");
 
                     user.setUserInfo(userInfo);
-                    user.setId(userEmail);
+                    user.setId(userId);
                     user.setName(userProfileObject.get("nickname").toString());
 
                     String savedUserEmail = userService.join(user);

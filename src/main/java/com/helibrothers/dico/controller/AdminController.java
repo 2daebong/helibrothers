@@ -1,10 +1,12 @@
 package com.helibrothers.dico.controller;
 
 import com.helibrothers.dico.core.service.ItemService;
+import com.helibrothers.dico.core.service.OrderService;
 import com.helibrothers.dico.domain.enums.ItemCategory;
 import com.helibrothers.dico.domain.enums.StockUnitCd;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,6 +19,8 @@ public class AdminController {
 
     @Autowired
     private ItemService itemService;
+    @Autowired
+    private OrderService orderService;
 
     @RequestMapping(value = "/admin/index", method = RequestMethod.GET)
     public ModelAndView index() {
@@ -36,11 +40,12 @@ public class AdminController {
         return mv;
     }
 
-    @RequestMapping(value = "/admin/order", method = RequestMethod.GET)
-    public ModelAndView order() {
+    @RequestMapping(value = "/admin/order/{userId}", method = RequestMethod.GET)
+    public ModelAndView order(@PathVariable String userId) {
         ModelAndView mv = new ModelAndView();
 
         mv.setViewName("admin/order");
+        mv.addObject("orders", orderService.findByUserId(userId));
 
         return mv;
     }

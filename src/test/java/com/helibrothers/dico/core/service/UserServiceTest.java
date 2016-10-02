@@ -2,6 +2,7 @@ package com.helibrothers.dico.core.service;
 
 import com.helibrothers.dico.core.repository.UserRepository;
 import com.helibrothers.dico.domain.User;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,14 @@ public class UserServiceTest {
 
         // Then
         fail("예외가 발생해야 한다.");
+    }
+
+    @Test
+    public void Email파싱() {
+        String email = "2daebong@naver.com";
+
+        String[] parsedStr = StringUtils.split(email, "@");
+        assertEquals("2daebong", parsedStr[0]);
     }
 
 }

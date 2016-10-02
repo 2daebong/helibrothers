@@ -1,5 +1,8 @@
 package com.helibrothers.dico.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.helibrothers.dico.domain.enums.DeliveryStatusCd;
 import com.helibrothers.dico.domain.enums.OrderStatusCd;
 
@@ -19,14 +22,14 @@ public class Order {
     @Column(name = "order_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
@@ -35,7 +38,7 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatusCd status;
 
-    public static Order createOrder(User user, Delivery delivery, OrderItem... orderItems) {
+    public static Order createOrder(User user, Delivery delivery, List<OrderItem> orderItems) {
         Order order = new Order();
         order.setUser(user);
         order.setDelivery(delivery);
@@ -103,6 +106,10 @@ public class Order {
 
     public Delivery getDelivery() {
         return delivery;
+    }
+
+    public String getStatusNameKr() {
+        return this.delivery.getStatus().getNameKr();
     }
 
     public Date getOrderDate() {

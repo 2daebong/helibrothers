@@ -68,7 +68,7 @@
         </c:forEach>
     });
 
-    var userId = 'admin';
+    var userId = '2daebong';
 
     function doOrder() {
         $.ajax({
@@ -76,9 +76,17 @@
             data: userId,
             type: 'POST',
             contentType: "application/json; charset=utf-8",
-            success: function (data) {
-                alert('주문 완료.\n 주문 페이지로 이동합니다.');
-                location.href = "/order";
+            success: function (resultCd) {
+
+                if(resultCd == 'SUCCESS') {
+                    alert('주문 완료.\n 주문 페이지로 이동합니다.');
+                    location.href = "/admin/order/" + userId;
+                } else if(resultCd == 'NEED_USERINFO') {
+                    alert('사용자 배송 정보가 필요합니다.');
+                } else {
+                    alert('ERROR!');
+                }
+
             },
             error: function (request, status, error) {
                 alert("fail. code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);

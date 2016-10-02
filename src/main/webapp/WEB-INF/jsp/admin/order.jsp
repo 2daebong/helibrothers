@@ -24,15 +24,15 @@
                 <td>배송상태 (수단)</td>
                 <td> </td>
             </tr>
-            <c:forEach items="${orderList}" var="order">
-            <tr class="clickable-row" onclick="detailView(${order.orderNo})">
-                <td>${order.orderNo}</td>
-                <td>${order.userId}</td>
-                <td>${order.registYmdt}</td>
-                <td>준비 중 ^^;</td>
-                <td>준비 중 ^^;</td>
+            <c:forEach items="${orders}" var="order">
+            <tr class="clickable-row" onclick="detailView(${order.id})">
+                <td>${order.id}</td>
+                <td>${order.user.id}</td>
+                <td>${order.orderDate}</td>
+                <td>${order.user.userInfo.address}</td>
+                <td>${order.user.userInfo.phoneNumber}</td>
                 <td>${order.totalPrice}</td>
-                <td>${order.status.nameKr} (${order.deliveryType.nameKr})</td>
+                <td>${order.statusNameKr} (${order.statusNameKr})</td>
                 <td> </td>
             </tr>
             </c:forEach>
@@ -81,31 +81,30 @@
 <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
-    function detailView(orderNo) {
+    function detailView(id) {
         $('#detailModal_row').html('');
 
         $.ajax({
-            url: "/api/order?orderNo=" + orderNo,
+            url: "/api/order/" + id,
             type: 'GET',
             contentType: "application/json; charset=utf-8",
-            success: function (data) {
-                var orderItemList = data.orderItemList;
+            success: function (order) {
+                var orderItems = order.orderItems;
                 var html = "";
-                var totalPrice = 0;
-                for(var i=0; i<orderItemList.length; i++) {
-                    var item = orderItemList[i];
-                    var itemPrice = item.product.price * item.count;
+                var allItemTotalPrice = 0;
+                for(var i=0; i<orderItems.length; i++) {
+                    var orderItem = orderItems[i];
                     html += "\<tr\>" +
-                            "\<td\>\<img src\=\"" + item.product.imageUrl + "\" width\=\"80px\" height\=\"80px\"\>\<\/td\>" +
-                            "\<td\>" + item.product.productNameKr + "\<\/td\>" +
-                            "\<td\>" + item.count + "\<\/td\>" +
-                            "\<td\>" + itemPrice + "\<\/td\>" +
+                            "\<td\>\<img src\=\"" + orderItem.item.imageUrl + "\" width\=\"80px\" height\=\"80px\"\>\<\/td\>" +
+                            "\<td\>" + orderItem.item.name + "\<\/td\>" +
+                            "\<td\>" + orderItem.count + "\<\/td\>" +
+                            "\<td\>" + orderItem.totalPrice + "\<\/td\>" +
                             "\<\/tr\>";
-                    totalPrice += itemPrice;
+                    allItemTotalPrice += orderItem.totalPrice;
                 }
-                $('#detail_orderInfo').html('사용자ID : ' + data.userId + " <br> 주문번호 : " + data.orderNo);
+                $('#detail_orderInfo').html('사용자ID : ' + order.user.id + " <br> 주문번호 : " + order.id);
                 $('#detailModal_row').html(html);
-                $('#totalPrice').html(totalPrice);
+                $('#totalPrice').html(allItemTotalPrice);
                 $('#detailModal').modal();
             },
             error: function (request, status, error) {

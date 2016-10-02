@@ -1,5 +1,6 @@
 package com.helibrothers.dico.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.helibrothers.dico.domain.embeddable.UserInfo;
 import com.helibrothers.dico.domain.enums.DeliveryStatusCd;
 
@@ -17,6 +18,7 @@ public class Delivery {
     private Long id;
 
     @OneToOne(mappedBy = "delivery")
+    @JsonIgnore
     private Order order;
 
     @Embedded
@@ -24,6 +26,10 @@ public class Delivery {
 
     @Enumerated(EnumType.STRING)
     private DeliveryStatusCd status;
+
+    public Delivery() {
+
+    }
 
     public Delivery(UserInfo userInfo) {
         this.userInfo = userInfo;
@@ -55,10 +61,12 @@ public class Delivery {
     }
 
     public DeliveryStatusCd getStatus() {
-        return status;
+        return this.status;
     }
 
     public void setStatus(DeliveryStatusCd status) {
         this.status = status;
     }
+
+
 }

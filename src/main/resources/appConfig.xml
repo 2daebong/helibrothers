@@ -40,6 +40,7 @@
         </property>
         <property name="jpaProperties"><!-- 하이버네이트 상세 설정 -->
             <props>
+                <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
                 <!-- 방언 -->
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
                 <!-- SQL 보기 -->

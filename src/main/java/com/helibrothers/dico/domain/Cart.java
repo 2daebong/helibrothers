@@ -1,8 +1,6 @@
 package com.helibrothers.dico.domain;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by LeeDaebeom-Mac on 2016. 9. 21..
@@ -38,7 +36,7 @@ public class Cart {
         this.cartItemMap = cartItemMap;
     }
 
-    public Collection<CartItem> getCartItemList() {
-        return this.cartItemMap.values();
+    public List<CartItem> getCartItemList() {
+        return new ArrayList<CartItem>(this.cartItemMap.values());
     }
 }
