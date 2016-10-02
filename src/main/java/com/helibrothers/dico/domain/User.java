@@ -1,8 +1,6 @@
 package com.helibrothers.dico.domain;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.helibrothers.dico.domain.embeddable.UserInfo;
 
 import javax.persistence.*;

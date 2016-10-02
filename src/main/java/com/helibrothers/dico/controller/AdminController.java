@@ -2,6 +2,8 @@ package com.helibrothers.dico.controller;
 
 import com.helibrothers.dico.core.service.ItemService;
 import com.helibrothers.dico.core.service.OrderService;
+import com.helibrothers.dico.core.service.UserService;
+import com.helibrothers.dico.domain.User;
 import com.helibrothers.dico.domain.enums.ItemCategory;
 import com.helibrothers.dico.domain.enums.StockUnitCd;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 /**
  * Created by LeeDaebeom-Mac on 2016. 8. 25..
@@ -21,6 +25,8 @@ public class AdminController {
     private ItemService itemService;
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/admin/index", method = RequestMethod.GET)
     public ModelAndView index() {
@@ -50,6 +56,15 @@ public class AdminController {
         return mv;
     }
 
+    @RequestMapping(value = "/admin/order", method = RequestMethod.GET)
+    public ModelAndView orderPrepare() {
+        ModelAndView mv = new ModelAndView();
+
+        mv.setViewName("admin/orderPrepare");
+
+        return mv;
+    }
+
     @RequestMapping(value = "/admin/product", method = RequestMethod.GET)
     public ModelAndView product() {
         ModelAndView mv = new ModelAndView();
@@ -68,6 +83,8 @@ public class AdminController {
         ModelAndView mv = new ModelAndView();
 
         mv.setViewName("admin/user");
+        List<User> users = userService.findUsers();
+        mv.addObject("users", users);
 
         return mv;
     }
