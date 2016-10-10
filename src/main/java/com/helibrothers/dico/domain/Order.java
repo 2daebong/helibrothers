@@ -1,8 +1,5 @@
 package com.helibrothers.dico.domain;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.helibrothers.dico.domain.enums.DeliveryStatusCd;
 import com.helibrothers.dico.domain.enums.OrderStatusCd;
 

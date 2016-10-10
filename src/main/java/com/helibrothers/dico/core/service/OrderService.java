@@ -56,9 +56,10 @@ public class OrderService {
         List<OrderItem> orderItems = new ArrayList<OrderItem>();
 
         for (CartItem cartItem : cartItems) {
-            Item newItem = itemService.findOne(cartItem.getItem().getId()); // 상품의 수량, 가격 변경이 있을 수 있으므로 다시 db 로드
-            OrderItem orderItem = OrderItem.createOrderItem(newItem, newItem.getPrice(), cartItem.getAmount());
+            OrderItem orderItem = OrderItem.createOrderItem(cartItem.getItem(), cartItem.getItem().getPrice(), cartItem.getAmount());
             orderItems.add(orderItem);
+            // TODO : Item 수량 update가 되지 않아 임시로 update query 날림. 추후 릴레이션 update 로 처리하도록 수정 필요.
+            itemService.updateItem(orderItem.getItem());
         }
 
         Delivery delivery = new Delivery(user.getUserInfo());

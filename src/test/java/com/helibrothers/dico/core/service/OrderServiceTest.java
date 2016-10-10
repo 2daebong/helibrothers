@@ -2,9 +2,7 @@ package com.helibrothers.dico.core.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.helibrothers.dico.core.repository.OrderRepository;
-import com.helibrothers.dico.domain.Item;
-import com.helibrothers.dico.domain.Order;
-import com.helibrothers.dico.domain.User;
+import com.helibrothers.dico.domain.*;
 import com.helibrothers.dico.domain.embeddable.UserInfo;
 import com.helibrothers.dico.domain.enums.OrderStatusCd;
 import com.helibrothers.dico.exception.NotEnoughStockException;
@@ -17,6 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -54,6 +55,28 @@ public class OrderServiceTest {
         assertEquals("주문한 상품 종류 수가 정확해야 한다.", 1, getOrder.getOrderItems().size());
         assertEquals("주문 가격은 가격*수량 이다.", 990*2, getOrder.getTotalPrice());
         assertEquals("주문 수량만큼 재고가 줄어야 한다", 8, item.getStockQuantity());
+    }
+
+    @Test
+    public void 상품주문_카트로() throws Exception {
+
+        Cart cart = new Cart();
+        cart.setUserId("2daebong");
+        Map<Long, CartItem> cartItemMap = new HashMap<Long, CartItem>();
+        Item item = new Item();
+        item.setId(1l);
+        item.setPrice(100);
+        item.setStockQuantity(10);
+        cartItemMap.put(1l, new CartItem(item, 2));
+
+        cart.setCartItemMap(cartItemMap);
+
+        Order oldOrder = orderService.doOrderUsingCart(cart);
+
+        Order order = orderRepository.findOne(oldOrder.getId());
+
+        assertEquals(100*2, order.getTotalPrice());
+        assertEquals(8, order.getOrderItems().get(0).getItem().getStockQuantity());
     }
 
     @Test(expected = NotEnoughStockException.class)
