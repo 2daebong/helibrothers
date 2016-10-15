@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set value="${sessionScope.IS_LOGIN}" var="isLogin"/>
-<c:set value="${sessionScope.USER_ID}" var="userId"/>
 <!-- Footer -->
 <footer>
     <div class="row main-banner-text footer-cp-info mg-15">
@@ -42,8 +40,8 @@
             </ul>
         </div>
     </div>
-    <input type="hidden" id="isLogin" value="${isLogin}"/>
-    <input type="hidden" id="userId" value="${userId}"/>
+    <input type="hidden" id="isLogin" value="${sessionScope.IS_LOGIN}"/>
+    <input type="hidden" id="userId" value="${sessionScope.USER_ID}"/>
 </footer>
 
 <!-- Common Element Area -->
