@@ -8,10 +8,24 @@ var app = null;
 (function() {
 
     app = {
+
         init: function() {
             var self = this;
             self.bindingEvents();
-        }, 
+        },
+
+        isLogin: function() {
+
+            if($('#isLogin')[0].value) {
+                return true;
+            };
+
+            return false;
+        },
+
+        getUserId: function() {
+            return $('#userId')[0].value;
+        },
 
         bindingEvents: function() {
             $(document).on('click', '.add-to-cart', function() {
@@ -51,10 +65,38 @@ var app = null;
         },
         
         addToCart: function() {
+            if(false == app.isLogin()) {
+                location.href = '/login';
+                return;
+            }
+
             var modal = $('#itemModal');
             var itemId = modal.find('#cart-modal-item-id')[0].value;
             var amount = modal.find('#cart-modal-item-amount')[0].value;
-            console.log('상품 카트 담기 시도. ' + itemId + ' : ' + amount + '개');
+            var userId = app.getUserId();
+
+
+            var cartItem = {
+                'userId' : userId,
+                'itemId' : itemId,
+                'amount' : amount
+            }
+
+            console.log('상품 카트 담기 시도. ' + JSON.stringify(cartItem));
+
+            $.ajax({
+                type: "POST",
+                url: "/api/cart",
+                data: JSON.stringify(cartItem),
+                success: function(){
+                    location.href = "/cartList";
+                },
+                error : function(request,status,error){
+                    alert("fail. code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                },
+                dataType: "json",
+                contentType : "application/json; charset=utf-8"
+            });
         }
     }
 

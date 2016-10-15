@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set value="${sessionScope.IS_LOGIN}" var="isLogin"/>
+<c:set value="${sessionScope.USER_ID}" var="userId"/>
 <!-- Footer -->
 <footer>
     <div class="row main-banner-text footer-cp-info mg-15">
@@ -40,6 +42,8 @@
             </ul>
         </div>
     </div>
+    <input type="hidden" id="isLogin" value="${isLogin}"/>
+    <input type="hidden" id="userId" value="${userId}"/>
 </footer>
 
 <!-- Common Element Area -->
@@ -51,6 +55,7 @@
 <!-- jQuery Plugin -->
 <script src="/lib/jquery/jquery.bcSwipe.min.js"></script>
 <script src="/lib/jquery/jqBootstrapValidation.js"></script>
+<script src="/lib/jquery/jquery.session.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="/lib/bootstrap/js/bootstrap.min.js"></script>

@@ -24,7 +24,7 @@ import javax.servlet.http.HttpSession;
 public class WebController {
     final Logger logger = LoggerFactory.getLogger(WebController.class);
     private final String SESSION_IS_LOGIN = "IS_LOGIN";
-    private final String SESSION_USER_EMAIL = "USER_EMAIL";
+    private final String SESSION_USER_ID = "USER_ID";
 
     @Autowired
     private LoginService loginService;
@@ -49,7 +49,7 @@ public class WebController {
         ModelAndView mv = new ModelAndView();
 
         if (session.getAttribute(SESSION_IS_LOGIN) != null) {
-            logger.info("User Alread login : {}", session.getAttribute(SESSION_USER_EMAIL).toString());
+            logger.info("User Alread login : {}", session.getAttribute(SESSION_USER_ID).toString());
 
             // Make a redirect
             mv.setViewName("redirect:/");
@@ -156,7 +156,7 @@ public class WebController {
                 }
 
                 // Register login info into session
-                registerLoginSession(session, userEmail);
+                registerLoginSession(session, userId);
 
                 processViewName = "mweb/naverOauthSuccess";
             }
@@ -175,14 +175,14 @@ public class WebController {
         return mv;
     }
 
-    private void registerLoginSession(HttpSession session, String userEmail) {
-        session.setAttribute(SESSION_IS_LOGIN, "login");
-        session.setAttribute(SESSION_USER_EMAIL, userEmail);
+    private void registerLoginSession(HttpSession session, String userId) {
+        session.setAttribute(SESSION_IS_LOGIN, true);
+        session.setAttribute(SESSION_USER_ID, userId);
     }
 
     private void unRegisterLoginSession(HttpSession session) {
         session.setAttribute(SESSION_IS_LOGIN, null);
-        session.setAttribute(SESSION_USER_EMAIL, null);
+        session.setAttribute(SESSION_USER_ID, null);
     }
 
 }
