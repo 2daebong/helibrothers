@@ -16,11 +16,14 @@ var app = null;
         bindingEvents: function() {
             $(document).on('click', '.add-to-cart', function() {
                 var self = $(this);
-                app.addToCart(self.attr("idx"));
+                app.showCartModal(self.attr("idx"));
+            });
+            $(document).on('click', '.btn-cart-add', function() {
+                app.addToCart();
             });
         },
 
-        addToCart: function(orderIndex) {
+        showCartModal: function(orderIndex) {
             app.showModalPopupForOrder(orderIndex);
         },
 
@@ -38,12 +41,20 @@ var app = null;
         showModalPopupForOrder: function(orderIndex) {
             var modal = $('#itemModal');
             modal.find('.modal-title').html('상품 주문 번호 : ' + orderIndex);
+            modal.find('#cart-modal-item-id')[0].value = orderIndex;
             modal.modal("show");
         },
 
         hideModalPopupForOrder: function() {
             var modal = $('#itemModal');
             modal.modal('hide');
+        },
+        
+        addToCart: function() {
+            var modal = $('#itemModal');
+            var itemId = modal.find('#cart-modal-item-id')[0].value;
+            var amount = modal.find('#cart-modal-item-amount')[0].value;
+            console.log('상품 카트 담기 시도. ' + itemId + ' : ' + amount + '개');
         }
     }
 

@@ -623,11 +623,13 @@ body {
 .nav-pills>li.active>a:hover {
     background-color: #4db6ac;
     border-radius: 0px !important;
+    font-size: .70em;
 }
 
 .nav-pills>li>a {
     font-size: 12px;
     border-radius: 0px !important;
+    font-size: .70em;
 }
 
 .nav>li>a {

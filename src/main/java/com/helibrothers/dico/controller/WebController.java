@@ -1,5 +1,6 @@
 package com.helibrothers.dico.controller;
 
+import com.helibrothers.dico.core.service.ItemService;
 import com.helibrothers.dico.core.service.LoginService;
 import com.helibrothers.dico.core.service.UserService;
 import com.helibrothers.dico.domain.User;
@@ -30,11 +31,15 @@ public class WebController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private ItemService itemService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView index() {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("mweb/index");
+
+        mv.addObject("items", itemService.findItems());
 
         return mv;
     }

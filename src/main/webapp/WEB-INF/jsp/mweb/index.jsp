@@ -74,61 +74,61 @@
 -->
 <!-- Main Content -->
 <div class="container-fluid main-contents-area">
-    <!-- section 1 -->
-    <div class="row section">
-        <div class="row title">
-            <p><strong>이벤트</strong></p>
-        </div>
-        <div class="row contents">
-            <div class="col-sm-6">
-                <div class="col-xs-6 text-center">
-                    <div class="card-container">
-                        <img src="/images/banana.png" width="100%" />
-                        <div class="info">
-                            <p><strong>바나나</strong></p>
-                            <p>1,000원</p>
-                            <button class="btn add-to-cart" data-toggle="modal" idx="1">담기</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-6 text-center">
-                    <div class="card-container">
-                        <img src="/images/banana.png" width="100%" />
-                        <div class="info">
-                            <p><strong>바나나</strong></p>
-                            <p>1,000원</p>
-                            <button class="btn add-to-cart" data-toggle="modal" idx="2">담기</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-            <div class="col-sm-6">
-                <div class="col-xs-6 text-center">
-                    <div class="card-container">
-                        <img src="/images/banana.png" width="100%" />
-                        <div class="info">
-                            <p><strong>바나나</strong></p>
-                            <p>1,000원</p>
-                            <button class="btn add-to-cart" data-toggle="modal" idx="3">담기</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-6 text-center">
-                    <div class="card-container">
-                        <img src="/images/banana.png" width="100%" />
-                        <div class="info">
-                            <p><strong>바나나</strong></p>
-                            <p>1,000원</p>
-                            <button class="btn add-to-cart" data-toggle="modal" idx="4">담기</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="clear"></div>
-            </div>
-            <div class="clear"></div>
-        </div>
-    </div>
+    <!-- section 1 Event -->
+    <%--<div class="row section">--%>
+        <%--<div class="row title">--%>
+            <%--<p><strong>이벤트</strong></p>--%>
+        <%--</div>--%>
+        <%--<div class="row contents">--%>
+            <%--<div class="col-sm-6">--%>
+                <%--<div class="col-xs-6 text-center">--%>
+                    <%--<div class="card-container">--%>
+                        <%--<img src="/images/banana.png" width="100%" />--%>
+                        <%--<div class="info">--%>
+                            <%--<p><strong>바나나</strong></p>--%>
+                            <%--<p>1,000원</p>--%>
+                            <%--<button class="btn add-to-cart" data-toggle="modal" idx="1">담기</button>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <%--<div class="col-xs-6 text-center">--%>
+                    <%--<div class="card-container">--%>
+                        <%--<img src="/images/banana.png" width="100%" />--%>
+                        <%--<div class="info">--%>
+                            <%--<p><strong>바나나</strong></p>--%>
+                            <%--<p>1,000원</p>--%>
+                            <%--<button class="btn add-to-cart" data-toggle="modal" idx="2">담기</button>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <%--<div class="clear"></div>--%>
+            <%--</div>--%>
+            <%--<div class="col-sm-6">--%>
+                <%--<div class="col-xs-6 text-center">--%>
+                    <%--<div class="card-container">--%>
+                        <%--<img src="/images/banana.png" width="100%" />--%>
+                        <%--<div class="info">--%>
+                            <%--<p><strong>바나나</strong></p>--%>
+                            <%--<p>1,000원</p>--%>
+                            <%--<button class="btn add-to-cart" data-toggle="modal" idx="3">담기</button>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <%--<div class="col-xs-6 text-center">--%>
+                    <%--<div class="card-container">--%>
+                        <%--<img src="/images/banana.png" width="100%" />--%>
+                        <%--<div class="info">--%>
+                            <%--<p><strong>바나나</strong></p>--%>
+                            <%--<p>1,000원</p>--%>
+                            <%--<button class="btn add-to-cart" data-toggle="modal" idx="4">담기</button>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <%--<div class="clear"></div>--%>
+            <%--</div>--%>
+            <%--<div class="clear"></div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
     <!-- end of section 1 -->
     <!-- section 2 -->
     <div class="row section">
@@ -137,11 +137,11 @@
         </div>
         <!-- Tab title area -->
         <ul class="nav nav-pills">
-            <li class="active"><a href="#item1">과일류</a></li>
-            <li><a href="#item2">채소류</a></li>
-            <li><a href="#item3">과일류</a></li>
-            <li><a href="#item4">채소류</a></li>
-            <li><a href="#item5">과일류</a></li>
+            <li class="active"><a href="#item1">신선식품</a></li>
+            <li><a href="#item2">축산/달걀</a></li>
+            <li><a href="#item3">가공식품</a></li>
+            <li><a href="#item4">양념/반찬</a></li>
+            <li><a href="#item5">기타</a></li>
         </ul>
         <!-- End of Tab area -->
         <!-- Tab contents area -->
@@ -149,49 +149,20 @@
             <div id="item1" class="tab-pane fade in active">
                 <div class="row contents">
                     <div class="col-sm-6">
-                        <div class="col-xs-6 text-center">
-                            <div class="card-container">
-                                <img src="/images/banana.png" width="100%" />
-                                <div class="info">
-                                    <p><strong>바나나</strong></p>
-                                    <p>1,000원</p>
-                                    <button class="btn add-to-cart" data-toggle="modal" idx="1">담기</button>
+                        <c:forEach var="item" items="${items}">
+                            <c:if test="${item.category eq 'FRESH'}">
+                            <div class="col-xs-6 text-center">
+                                <div class="card-container">
+                                    <img src=${item.imageUrl} width="100%" />
+                                    <div class="info">
+                                        <p><strong>${item.name}</strong></p>
+                                        <p>${item.price}원 / ${item.stockUnitCd.nameKr}</p>
+                                        <button class="btn add-to-cart" data-toggle="modal" idx="${item.id}">담기</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xs-6 text-center">
-                            <div class="card-container">
-                                <img src="/images/banana.png" width="100%" />
-                                <div class="info">
-                                    <p><strong>바나나</strong></p>
-                                    <p>1,000원</p>
-                                    <button class="btn add-to-cart" data-toggle="modal" idx="2">담기</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="col-xs-6 text-center">
-                            <div class="card-container">
-                                <img src="/images/banana.png" width="100%" />
-                                <div class="info">
-                                    <p><strong>바나나</strong></p>
-                                    <p>1,000원</p>
-                                    <button class="btn add-to-cart" data-toggle="modal" idx="3">담기</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-6 text-center">
-                            <div class="card-container">
-                                <img src="/images/banana.png" width="100%" />
-                                <div class="info">
-                                    <p><strong>바나나</strong></p>
-                                    <p>1,000원</p>
-                                    <button class="btn add-to-cart" data-toggle="modal" idx="4">담기</button>
-                                </div>
-                            </div>
-                        </div>
+                            </c:if>
+                        </c:forEach>
                         <div class="clear"></div>
                     </div>
                 </div>
@@ -199,49 +170,20 @@
             <div id="item2" class="tab-pane fade">
                 <div class="row contents">
                     <div class="col-sm-6">
-                        <div class="col-xs-6 text-center">
-                            <div class="card-container">
-                                <img src="/images/banana.png" width="100%" />
-                                <div class="info">
-                                    <p><strong>바나나</strong></p>
-                                    <p>1,000원</p>
-                                    <button class="btn add-to-cart" data-toggle="modal" idx="1">담기</button>
+                        <c:forEach var="item" items="${items}">
+                            <c:if test="${item.category eq 'MEAT'}">
+                            <div class="col-xs-6 text-center">
+                                <div class="card-container">
+                                    <img src=${item.imageUrl} width="100%" />
+                                    <div class="info">
+                                        <p><strong>${item.name}</strong></p>
+                                        <p>${item.price}원 / ${item.stockUnitCd.nameKr}</p>
+                                        <button class="btn add-to-cart" data-toggle="modal" idx="${item.id}">담기</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xs-6 text-center">
-                            <div class="card-container">
-                                <img src="/images/banana.png" width="100%" />
-                                <div class="info">
-                                    <p><strong>바나나</strong></p>
-                                    <p>1,000원</p>
-                                    <button class="btn add-to-cart" data-toggle="modal" idx="2">담기</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="col-xs-6 text-center">
-                            <div class="card-container">
-                                <img src="/images/banana.png" width="100%" />
-                                <div class="info">
-                                    <p><strong>바나나</strong></p>
-                                    <p>1,000원</p>
-                                    <button class="btn add-to-cart" data-toggle="modal" idx="3">담기</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-6 text-center">
-                            <div class="card-container">
-                                <img src="/images/banana.png" width="100%" />
-                                <div class="info">
-                                    <p><strong>바나나</strong></p>
-                                    <p>1,000원</p>
-                                    <button class="btn add-to-cart" data-toggle="modal" idx="4">담기</button>
-                                </div>
-                            </div>
-                        </div>
+                            </c:if>
+                        </c:forEach>
                         <div class="clear"></div>
                     </div>
                 </div>
@@ -249,49 +191,20 @@
             <div id="item3" class="tab-pane fade">
                 <div class="row contents">
                     <div class="col-sm-6">
-                        <div class="col-xs-6 text-center">
-                            <div class="card-container">
-                                <img src="/images/banana.png" width="100%" />
-                                <div class="info">
-                                    <p><strong>바나나</strong></p>
-                                    <p>1,000원</p>
-                                    <button class="btn add-to-cart" data-toggle="modal" idx="1">담기</button>
+                        <c:forEach var="item" items="${items}">
+                            <c:if test="${item.category eq 'INSTANT'}">
+                            <div class="col-xs-6 text-center">
+                                <div class="card-container">
+                                    <img src=${item.imageUrl} width="100%" />
+                                    <div class="info">
+                                        <p><strong>${item.name}</strong></p>
+                                        <p>${item.price}원 / ${item.stockUnitCd.nameKr}</p>
+                                        <button class="btn add-to-cart" data-toggle="modal" idx="${item.id}">담기</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xs-6 text-center">
-                            <div class="card-container">
-                                <img src="/images/banana.png" width="100%" />
-                                <div class="info">
-                                    <p><strong>바나나</strong></p>
-                                    <p>1,000원</p>
-                                    <button class="btn add-to-cart" data-toggle="modal" idx="2">담기</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="col-xs-6 text-center">
-                            <div class="card-container">
-                                <img src="/images/banana.png" width="100%" />
-                                <div class="info">
-                                    <p><strong>바나나</strong></p>
-                                    <p>1,000원</p>
-                                    <button class="btn add-to-cart" data-toggle="modal" idx="3">담기</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-6 text-center">
-                            <div class="card-container">
-                                <img src="/images/banana.png" width="100%" />
-                                <div class="info">
-                                    <p><strong>바나나</strong></p>
-                                    <p>1,000원</p>
-                                    <button class="btn add-to-cart" data-toggle="modal" idx="4">담기</button>
-                                </div>
-                            </div>
-                        </div>
+                            </c:if>
+                        </c:forEach>
                         <div class="clear"></div>
                     </div>
                 </div>
@@ -299,49 +212,20 @@
             <div id="item4" class="tab-pane fade">
                 <div class="row contents">
                     <div class="col-sm-6">
-                        <div class="col-xs-6 text-center">
-                            <div class="card-container">
-                                <img src="/images/banana.png" width="100%" />
-                                <div class="info">
-                                    <p><strong>바나나</strong></p>
-                                    <p>1,000원</p>
-                                    <button class="btn add-to-cart" data-toggle="modal" idx="1">담기</button>
+                        <c:forEach var="item" items="${items}">
+                            <c:if test="${item.category eq 'SIDE'}">
+                            <div class="col-xs-6 text-center">
+                                <div class="card-container">
+                                    <img src=${item.imageUrl} width="100%" />
+                                    <div class="info">
+                                        <p><strong>${item.name}</strong></p>
+                                        <p>${item.price}원 / ${item.stockUnitCd.nameKr}</p>
+                                        <button class="btn add-to-cart" data-toggle="modal" idx="${item.id}">담기</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xs-6 text-center">
-                            <div class="card-container">
-                                <img src="/images/banana.png" width="100%" />
-                                <div class="info">
-                                    <p><strong>바나나</strong></p>
-                                    <p>1,000원</p>
-                                    <button class="btn add-to-cart" data-toggle="modal" idx="2">담기</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="col-xs-6 text-center">
-                            <div class="card-container">
-                                <img src="/images/banana.png" width="100%" />
-                                <div class="info">
-                                    <p><strong>바나나</strong></p>
-                                    <p>1,000원</p>
-                                    <button class="btn add-to-cart" data-toggle="modal" idx="3">담기</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-6 text-center">
-                            <div class="card-container">
-                                <img src="/images/banana.png" width="100%" />
-                                <div class="info">
-                                    <p><strong>바나나</strong></p>
-                                    <p>1,000원</p>
-                                    <button class="btn add-to-cart" data-toggle="modal" idx="4">담기</button>
-                                </div>
-                            </div>
-                        </div>
+                            </c:if>
+                        </c:forEach>
                         <div class="clear"></div>
                     </div>
                 </div>
@@ -349,50 +233,21 @@
             <div id="item5" class="tab-pane fade">
                 <div class="row contents">
                     <div class="col-sm-6">
-                        <div class="col-xs-6 text-center">
-                            <div class="card-container">
-                                <img src="/images/banana.png" width="100%" />
-                                <div class="info">
-                                    <p><strong>바나나</strong></p>
-                                    <p>1,000원</p>
-                                    <button class="btn add-to-cart" data-toggle="modal" idx="1">담기</button>
+                        <c:forEach var="item" items="${items}">
+                            <c:if test="${item.category eq 'ETC'}">
+                            <div class="col-xs-6 text-center">
+                                <div class="card-container">
+                                    <img src=${item.imageUrl} width="100%" />
+                                    <div class="info">
+                                        <p><strong>${item.name}</strong></p>
+                                        <p>${item.price}원 / ${item.stockUnitCd.nameKr}</p>
+                                        <button class="btn add-to-cart" data-toggle="modal" idx="${item.id}">담기</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xs-6 text-center">
-                            <div class="card-container">
-                                <img src="/images/banana.png" width="100%" />
-                                <div class="info">
-                                    <p><strong>바나나</strong></p>
-                                    <p>1,000원</p>
-                                    <button class="btn add-to-cart" data-toggle="modal" idx="2">담기</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="col-xs-6 text-center">
-                            <div class="card-container">
-                                <img src="/images/banana.png" width="100%" />
-                                <div class="info">
-                                    <p><strong>바나나</strong></p>
-                                    <p>1,000원</p>
-                                    <button class="btn add-to-cart" data-toggle="modal" idx="3">담기</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-6 text-center">
-                            <div class="card-container">
-                                <img src="/images/banana.png" width="100%" />
-                                <div class="info">
-                                    <p><strong>바나나</strong></p>
-                                    <p>1,000원</p>
-                                    <button class="btn add-to-cart" data-toggle="modal" idx="4">담기</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clear"></div>
+                            </c:if>
+                        </c:forEach>
+                        <div class="clear">
                     </div>
                 </div>
             </div>
@@ -412,11 +267,12 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">상품 주문</h4>
+                <input id="cart-modal-item-id" type="hidden">
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="selelctItem">수량을 선택하세요.</label>
-                    <select class="form-control" id="selelctItem">
+                    <label for="cart-modal-item-amount">수량을 선택하세요.</label>
+                    <select class="form-control" id="cart-modal-item-amount">
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -431,8 +287,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">주문하기</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">취소하기</button>
+                <button type="button" class="btn btn-default btn-cart-add" >주문하기</button>
+                <button type="button" class="btn btn-default btn-cart-cancel" data-dismiss="modal">취소하기</button>
             </div>
         </div>
     </div>
