@@ -39,4 +39,15 @@ public class Cart {
     public List<CartItem> getCartItemList() {
         return new ArrayList<CartItem>(this.cartItemMap.values());
     }
+
+    public int getTotalPrice() {
+        int totalPrice = 0;
+        for (CartItem cartItem :
+                this.cartItemMap.values()) {
+            totalPrice += cartItem.getItem().getPrice() * cartItem.getAmount();
+        }
+
+        return totalPrice;
+    }
+
 }

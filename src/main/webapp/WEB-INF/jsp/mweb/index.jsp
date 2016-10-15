@@ -287,7 +287,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-cart-add">주문하기</button>
+                <button type="button" class="btn btn-default btn-cart-add">카트에 담기</button>
                 <button type="button" class="btn btn-default btn-cart-cancel" data-dismiss="modal">취소하기</button>
             </div>
         </div>

@@ -3,8 +3,10 @@ package com.helibrothers.dico.domain;
 import com.helibrothers.dico.domain.enums.ItemCategory;
 import com.helibrothers.dico.domain.enums.StockUnitCd;
 import com.helibrothers.dico.exception.NotEnoughStockException;
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import javax.persistence.*;
+import java.net.URLDecoder;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -113,7 +115,7 @@ public class Item {
     }
 
     public String getItemDesc() {
-        return itemDesc;
+        return this.itemDesc;
     }
 
     public void setItemDesc(String itemDesc) {
