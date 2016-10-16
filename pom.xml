@@ -12,6 +12,12 @@
     <name>dico_service</name>
     <description>heli brothers! dico project.</description>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <relativeDeployPath>../deploy/web</relativeDeployPath>
+        <deploy.path>${project.basedir}/${relativeDeployPath}</deploy.path>
+    </properties>
+
     <dependencies>
         <!-- spring mvc -->
         <dependency>
