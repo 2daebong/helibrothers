@@ -35,5 +35,4 @@
     naver_id_login.setState(state);
     naver_id_login.init_naver_id_login();
 </script>
-
 <jsp:include page="common/footer.jsp"/>
