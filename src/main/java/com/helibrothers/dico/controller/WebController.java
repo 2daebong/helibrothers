@@ -29,7 +29,6 @@ public class WebController {
 
     @Autowired
     private LoginService loginService;
-
     @Autowired
     private UserService userService;
     @Autowired
@@ -198,9 +197,17 @@ public class WebController {
     }
 
     @RequestMapping(value = "/uInfo", method = RequestMethod.GET)
-    public ModelAndView userInfo() {
+    public ModelAndView userInfo(HttpSession session) {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("mweb/userInfo");
+
+        String userId = session.getAttribute(SessionConstant.USER_ID).toString();
+        User user = userService.findOne(userId);
+
+        if (user != null) {
+            logger.debug("user name:{}", user.getName());
+            mv.addObject("userName", user.getName());
+        }
 
         return mv;
     }
