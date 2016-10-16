@@ -168,10 +168,9 @@ public class WebController {
 
                     user.setUserInfo(userInfo);
                     user.setId(userId);
-                    user.setName(userProfileObject.get("nickname").toString());
+                    user.setName(userProfileObject.get("name").toString());
 
                     String savedUserEmail = userService.join(user);
-
                     logger.info("Saved User Email : {}", savedUserEmail);
 
                 } else {
