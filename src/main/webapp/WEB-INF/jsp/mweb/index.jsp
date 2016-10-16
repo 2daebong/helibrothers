@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <jsp:include page="common/header.jsp"/>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -18,7 +19,7 @@
                         <span>Welcome to <strong>야채사요</strong></span>
                     </h3>
                     <h4>
-                        <span>Lorem ipsum dolor sit amet</span>
+                        <span>Lorem ipsum dolor sit amet <spring:eval expression="@properties['phase']"/> </span>
                     </h4>
                 </div>
             </div>
