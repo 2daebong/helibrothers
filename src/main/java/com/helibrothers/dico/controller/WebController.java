@@ -6,19 +6,19 @@ import com.helibrothers.dico.core.service.UserService;
 import com.helibrothers.dico.domain.SessionConstant;
 import com.helibrothers.dico.domain.User;
 import com.helibrothers.dico.domain.embeddable.UserInfo;
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 /**
  * Created by LeeDaebeom-Mac on 2016. 9. 3..
@@ -196,20 +196,62 @@ public class WebController {
         return mv;
     }
 
-    @RequestMapping(value = "/uInfo", method = RequestMethod.GET)
-    public ModelAndView userInfo(HttpSession session) {
+    @RequestMapping(value = "/modifyUserInfo", method = RequestMethod.GET)
+    public ModelAndView modifyUserInfo(HttpSession session) {
         ModelAndView mv = new ModelAndView();
+
+        if (isLogin(session) == false) {
+            mv.setViewName("mweb/login");
+            return mv;
+        }
+
         mv.setViewName("mweb/userInfo");
 
         String userId = session.getAttribute(SessionConstant.USER_ID).toString();
+
         User user = userService.findOne(userId);
 
         if (user != null) {
-            logger.debug("user name:{}", user.getName());
             mv.addObject("userName", user.getName());
+            mv.addObject("userAddress", user.getUserInfo().getAddress());
+            mv.addObject("phoneNumber", user.getUserInfo().getPhoneNumber());
         }
 
         return mv;
+    }
+
+    @RequestMapping(value = "/saveUserInfo", method = RequestMethod.POST)
+    public @ResponseBody JSONObject saveUserInfo(@RequestBody Map<String, Object> bodyMap, HttpSession session) {
+        JSONObject returnObj = new JSONObject();
+        returnObj.put("status", "ERROR");
+
+        String userId = session.getAttribute(SessionConstant.USER_ID).toString();
+        String address = MapUtils.getString(bodyMap, "address");
+        String phoneNumber = MapUtils.getString(bodyMap, "phoneNumber");
+
+        logger.info("userid {}, address:{}, phon:{}", userId, address, phoneNumber);
+
+        if (userId == null || address == null || phoneNumber == null) {
+            returnObj.put("status", "ERROR");
+        } else {
+            User user = userService.findOne(userId);
+
+            if (user != null) {
+                UserInfo userInfo = user.getUserInfo();
+                userInfo.setAddress(address);
+                userInfo.setPhoneNumber(phoneNumber);
+
+                user.setUserInfo(userInfo);
+
+                String savedUserId = userService.join(user);
+
+                if (savedUserId.equals(userId)) {
+                    returnObj.put("status", "SUCCESS");
+                }
+            }
+        }
+
+        return returnObj;
     }
 
     private void registerLoginSession(HttpSession session, String userId) {

@@ -3,9 +3,11 @@
  */
 "use strict";
 
+var app = null;
+
 (function() {
 
-    var app = {
+    app = {
 
         init: function() {
             var self = this;
@@ -34,7 +36,7 @@
                 app.addToCart();
             });
             $(document).on('click', '#order', function() {
-               app.doOrder();
+                app.doOrder();
             });
         },
 
@@ -89,14 +91,12 @@
                 type: "POST",
                 url: "/api/cart/",
                 data: JSON.stringify(cartItem),
+                dataType: "json",
+                contentType : "application/json; charset=utf-8",
                 success: function(){
                     location.href = "/cartList/" + userId;
                 },
-                error : function(request,status,error){
-                    alert("fail. code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                },
-                dataType: "json",
-                contentType : "application/json; charset=utf-8"
+                error : app.ajaxError
             });
         },
 
@@ -113,16 +113,43 @@
                     if(result == 'SUCCESS') {
                         alert('주문이 완료되었습니다.');
                     } else if(result == 'NEED_USERINFO') {
-                        location.href = "/uInfo";
+                        location.href = "/modifyUserInfo";
                         return
                     } else if(result == 'ERROR') {
                         alert(result)
                     }
                 },
-                error : function(request,status,error){
-                    alert("fail. code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                }
+                error: app.ajaxError
+            });
+        },
+
+        saveUserInfo: function(address, phoneNumber) {
+            var userInfo = {
+                'userId': app.getUserId(),
+                'address': address,
+                'phoneNumber': phoneNumber
+            };
+
+            $.ajax({
+                type: 'POST',
+                url : '/saveUserInfo',
+                data: JSON.stringify(userInfo),
+                dataType: 'json',
+                contentType: 'application/json; charset=uti-8',
+                success: function(result) {
+                    if (result.status === 'SUCCESS') {
+                        alert("업데이트 성공!");
+                        window.location.href = "/modifyUserInfo"
+                    } else {
+                        console.log("업데이트에 실패하였습니다.");
+                    }
+                },
+                error: app.ajaxError
             })
+        },
+
+        ajaxError: function(request, status, error) {
+            alert("fail. code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
         }
     }
 

@@ -12,6 +12,7 @@
     }
 
     #address {
+        border:1px solid #DCDCDC;
         width:100%;
     }
 </style>
@@ -44,7 +45,7 @@
                     </tr>
                     <tr>
                         <td>주소지</td>
-                        <td><input type="text" id="address" placeholder="주소를 입력해주세요."></td>
+                        <td><input type="text" id="address" value="${userAddress}" placeholder="주소를 입력해주세요."></td>
                     </tr>
                     </tbody>
                 </table>
@@ -56,20 +57,65 @@
     </div>
 </div>
 <script>
-    $("#phone-1").on("keypress", function(e) {
-        if (e.target.value.length > 1) {
-            $("#phone-2").focus();
+    (function() {
+        $("#phone-1").on("keypress", function(e) {
+            if (e.target.value.length > 1) {
+                $("#phone-2").focus();
+            }
+        });
+        $("#phone-2").on("keypress", function(e) {
+            if (e.target.value.length > 2) {
+                $("#phone-3").focus();
+            }
+        });
+        $("#phone-3").on("keypress", function(e) {
+            if (e.target.value.length > 2) {
+                $("#address").focus();
+            }
+        });
+
+        function getAddress() {
+            return document.querySelector("#address").value;
         }
-    });
-    $("#phone-2").on("keypress", function(e) {
-        if (e.target.value.length > 2) {
-            $("#phone-3").focus();
+
+        function getPhoneNumber() {
+            var p1 = document.querySelector("#phone-1").value;
+            var p2 = document.querySelector("#phone-2").value;
+            var p3 = document.querySelector("#phone-3").value;
+
+            if (p1.length > 2 && p2.length > 3 && p3.length > 3) {
+                return p1 + '-' + p2 + '-' + p3;
+            }
+            return "";
         }
-    });
-    $("#phone-3").on("keypress", function(e) {
-        if (e.target.value.length > 2) {
-            $("#address").focus();
+
+        var saveBtn = document.querySelector("#save-user-info");
+
+        if (saveBtn) {
+            saveBtn.addEventListener('click', function() {
+                var address = getAddress();
+                var phoneNumber = getPhoneNumber();
+
+                if (address !== "" && phoneNumber !== "") {
+                    app.saveUserInfo(getAddress(), getPhoneNumber());
+                } else {
+                    alert("올바르지 않은 정보입니다");
+                }
+            });
         }
-    });
+
+        function fillOutPhoneNumber(phoneNumber) {
+            if (phoneNumber === "")
+                return;
+
+            var nums = phoneNumber.split('-');
+            document.querySelector("#phone-1").value = nums[0];
+            document.querySelector("#phone-2").value = nums[1];
+            document.querySelector("#phone-3").value = nums[2];
+        }
+
+        fillOutPhoneNumber("${phoneNumber}");
+
+    })();
 </script>
 <jsp:include page="common/footer.jsp"/>
