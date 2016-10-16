@@ -5,6 +5,10 @@
 
 <jsp:include page="common/header.jsp"/>
 <style>
+    .row.user-address input{
+        padding:5px;
+    }
+
     .phone-field {
         border:1px solid #DCDCDC;
         width:25%;
