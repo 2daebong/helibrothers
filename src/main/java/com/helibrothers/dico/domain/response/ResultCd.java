@@ -5,6 +5,7 @@ package com.helibrothers.dico.domain.response;
  */
 public enum ResultCd {
     SUCCESS,
+    LOGIN_ERROR,
     NEED_USERINFO,
     ERROR
 }

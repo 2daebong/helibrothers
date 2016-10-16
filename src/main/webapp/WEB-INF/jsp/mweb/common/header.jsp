@@ -30,6 +30,8 @@
     <script src="/lib/jquery/jquery.min.js"></script>
 </head>
 <body>
+    <input type="hidden" id="isLogin" value="${sessionScope.IS_LOGIN}"/>
+    <input type="hidden" id="userId" value="${sessionScope.USER_ID}"/>
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
         <div class="container-fluid">
@@ -50,14 +52,15 @@
                         <a href="#about">야채사요 소개</a>
                     </li>
                     <li>
-                        <a href="cartList">장바구니</a>
+                        <a href="/cartList<c:if test="${sessionScope.IS_LOGIN}">/${sessionScope.USER_ID}</c:if>">장바구니</a>
                     </li>
                     <li>
-                        <% if (session.getAttribute("IS_LOGIN") == null) { %>
-                        <a href="login">로그인</a>
-                        <% } else { %>
-                        <a href="logout">로그아웃</a>
-                        <% } %>
+                        <c:if test="${sessionScope.IS_LOGIN eq null}">
+                        <a href="/login">로그인</a>
+                        </c:if>
+                        <c:if test="${sessionScope.IS_LOGIN eq true}">
+                        <a href="/logout">로그아웃</a>
+                        </c:if>
                     </li>
                 </ul>
             </div>

@@ -2,6 +2,7 @@ package com.helibrothers.dico.controller;
 
 import com.helibrothers.dico.core.service.CartService;
 import com.helibrothers.dico.domain.Cart;
+import com.helibrothers.dico.domain.SessionConstant;
 import org.apache.commons.collections.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,13 +29,19 @@ public class CartController {
         Long itemId = MapUtils.getLong(bodyMap, "itemId");
         Integer amount = MapUtils.getInteger(bodyMap, "amount");
 
-        Cart userCart = (Cart) request.getSession().getAttribute("cart");
+        Cart userCart = (Cart) request.getSession().getAttribute(SessionConstant.getCartSessionConstant(userId));
 
         userCart = cartService.putInCart(userCart, userId, itemId, amount);
 
-        request.getSession().setAttribute("cart", userCart);
+        request.getSession().setAttribute(SessionConstant.getCartSessionConstant(userId), userCart);
 
         return userCart;
+    }
+
+    @RequestMapping(value = "/api/cart/", method = RequestMethod.PUT)
+    public void updateCart(@RequestBody Map<String, Object> bodyMap, HttpServletRequest request) {
+
+
     }
 
 }

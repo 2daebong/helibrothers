@@ -40,8 +40,7 @@
             </ul>
         </div>
     </div>
-    <input type="hidden" id="isLogin" value="${sessionScope.IS_LOGIN}"/>
-    <input type="hidden" id="userId" value="${sessionScope.USER_ID}"/>
+
 </footer>
 
 <!-- Common Element Area -->
@@ -53,7 +52,6 @@
 <!-- jQuery Plugin -->
 <script src="/lib/jquery/jquery.bcSwipe.min.js"></script>
 <script src="/lib/jquery/jqBootstrapValidation.js"></script>
-<script src="/lib/jquery/jquery.session.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="/lib/bootstrap/js/bootstrap.min.js"></script>

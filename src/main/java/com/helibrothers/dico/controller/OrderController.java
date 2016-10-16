@@ -4,11 +4,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.helibrothers.dico.core.service.OrderService;
 import com.helibrothers.dico.domain.Cart;
 import com.helibrothers.dico.domain.Order;
+import com.helibrothers.dico.domain.SessionConstant;
 import com.helibrothers.dico.domain.response.ResultCd;
 import com.helibrothers.dico.exception.NotRegistUserInfoException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Session;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,17 +28,22 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @RequestMapping(value = "api/order/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/order/{id}", method = RequestMethod.GET)
     public Order getOrder(@PathVariable Long id) {
         return orderService.findOne(id);
     }
 
-    @RequestMapping(value = "api/order/cart", method = RequestMethod.POST)
-    public String doOrder(@RequestBody String userId, HttpServletRequest request) throws JsonProcessingException {
+    @RequestMapping(value = "/api/order/cart", method = RequestMethod.POST)
+    public ResultCd doOrder(@RequestBody String userId, HttpServletRequest request) throws JsonProcessingException {
 
-        Cart cart = (Cart) request.getSession().getAttribute("cart");
-        Order order = null;
         ResultCd resultCd = ResultCd.ERROR;
+
+        if(StringUtils.equals(userId, request.getSession().getAttribute(SessionConstant.USER_ID).toString()) == false) {
+            return ResultCd.LOGIN_ERROR;
+        }
+
+        Cart cart = (Cart) request.getSession().getAttribute(SessionConstant.getCartSessionConstant(userId));
+        Order order = null;
 
         if(StringUtils.equals(cart.getUserId(), userId)) {
 
@@ -50,10 +58,10 @@ public class OrderController {
             }
 
             if(order != null) {
-                request.getSession().removeAttribute("cart");
+                request.getSession().removeAttribute(SessionConstant.getCartSessionConstant(userId));
             }
         }
 
-        return resultCd.name();
+        return resultCd;
     }
 }

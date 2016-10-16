@@ -35,6 +35,9 @@ var app = null;
             $(document).on('click', '.btn-cart-add', function() {
                 app.addToCart();
             });
+            $(document).on('click', '#order', function() {
+               app.doOrder();
+            });
         },
 
         showCartModal: function(orderIndex) {
@@ -86,10 +89,10 @@ var app = null;
 
             $.ajax({
                 type: "POST",
-                url: "/api/cart",
+                url: "/api/cart/",
                 data: JSON.stringify(cartItem),
                 success: function(){
-                    location.href = "/cartList";
+                    location.href = "/cartList/" + userId;
                 },
                 error : function(request,status,error){
                     alert("fail. code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -97,6 +100,31 @@ var app = null;
                 dataType: "json",
                 contentType : "application/json; charset=utf-8"
             });
+        },
+
+        doOrder: function() {
+            var userId = app.getUserId();
+
+            $.ajax({
+                type: "POST",
+                url : "/api/order/cart",
+                data: userId,
+                dataType: "json",
+                contentType : "application/json; charset=utf-8",
+                success: function(result) {
+                    if(result == 'SUCCESS') {
+                        alert('주문이 완료되었습니다.');
+                    } else if(result == 'NEED_USERINFO') {
+                        location.href = "/uInfo";
+                        return
+                    } else if(result == 'ERROR') {
+                        alert(result)
+                    }
+                },
+                error : function(request,status,error){
+                    alert("fail. code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                }
+            })
         }
     }
 

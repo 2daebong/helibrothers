@@ -10,7 +10,7 @@
             <p align=center>장바구니</p>
         </div>
         <div class="row cart-list-items">
-            <c:forEach var="cartItem" items="${sessionScope.cart.cartItemList}">
+            <c:forEach var="cartItem" items="${cart.cartItemList}">
             <div class="card-container" id="cartItem-id-${cartItem.item.id}">
                 <div class="item">
                     <div class="img-area">
@@ -53,7 +53,7 @@
     <div class="cart-list-total">
         <div class="row cart-list-sum">
             <div>총 주문금액</div>
-            <div><fmt:formatNumber>${sessionScope.cart.totalPrice}</fmt:formatNumber>원</div>
+            <div><fmt:formatNumber>${cart.totalPrice}</fmt:formatNumber>원</div>
         </div>
         <div class="row cart-list-btns">
             <div class="col-xs-6">
@@ -67,7 +67,7 @@
 
 <script type="text/javascript">
     // unescape 처리
-    <c:forEach var="cartItem" items="${sessionScope.cart.cartItemList}">
+    <c:forEach var="cartItem" items="${cart.cartItemList}">
     $('#cartItem-id-${cartItem.item.id}').find('.sub-title')[0].innerHTML = unescape('${cartItem.item.itemDesc}');
     </c:forEach>
 </script>

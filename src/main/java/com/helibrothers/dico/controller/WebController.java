@@ -3,13 +3,16 @@ package com.helibrothers.dico.controller;
 import com.helibrothers.dico.core.service.ItemService;
 import com.helibrothers.dico.core.service.LoginService;
 import com.helibrothers.dico.core.service.UserService;
+import com.helibrothers.dico.domain.SessionConstant;
 import com.helibrothers.dico.domain.User;
 import com.helibrothers.dico.domain.embeddable.UserInfo;
+import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,8 +26,6 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class WebController {
     final Logger logger = LoggerFactory.getLogger(WebController.class);
-    private final String SESSION_IS_LOGIN = "IS_LOGIN";
-    private final String SESSION_USER_ID = "USER_ID";
 
     @Autowired
     private LoginService loginService;
@@ -48,8 +49,8 @@ public class WebController {
     public ModelAndView login(HttpSession session) {
         ModelAndView mv = new ModelAndView();
 
-        if (session.getAttribute(SESSION_IS_LOGIN) != null) {
-            logger.info("User Alread login : {}", session.getAttribute(SESSION_USER_ID).toString());
+        if (isLogin(session)) {
+            logger.info("User Alread login : {}", session.getAttribute(SessionConstant.USER_ID).toString());
 
             // Make a redirect
             mv.setViewName("redirect:/");
@@ -74,7 +75,29 @@ public class WebController {
     @RequestMapping(value = "/cartList", method = RequestMethod.GET)
     public ModelAndView cartList() {
         ModelAndView mv = new ModelAndView();
+
+        mv.setViewName("mweb/login");
+        return mv;
+    }
+
+    @RequestMapping(value = "/cartList/{userId}", method = RequestMethod.GET)
+    public ModelAndView cartListByUser(@PathVariable String userId, HttpSession session) {
+        ModelAndView mv = new ModelAndView();
+
+        if (isLogin(session) == false) {
+            mv.setViewName("mweb/login");
+            return mv;
+        }
+
+        // 로그인 아이디 검증
+        if (StringUtils.equals(userId, session.getAttribute(SessionConstant.USER_ID).toString()) == false) {
+            mv.setViewName("mweb/login");
+            return mv;
+        }
+
         mv.setViewName("mweb/cartList");
+
+        mv.addObject("cart", session.getAttribute(SessionConstant.getCartSessionConstant(userId)));
 
         return mv;
     }
@@ -175,14 +198,26 @@ public class WebController {
         return mv;
     }
 
+    @RequestMapping(value = "/uInfo", method = RequestMethod.GET)
+    public ModelAndView userInfo() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("mweb/userInfo");
+
+        return mv;
+    }
+
     private void registerLoginSession(HttpSession session, String userId) {
-        session.setAttribute(SESSION_IS_LOGIN, true);
-        session.setAttribute(SESSION_USER_ID, userId);
+        session.setAttribute(SessionConstant.IS_LOGIN, true);
+        session.setAttribute(SessionConstant.USER_ID, userId);
     }
 
     private void unRegisterLoginSession(HttpSession session) {
-        session.setAttribute(SESSION_IS_LOGIN, null);
-        session.setAttribute(SESSION_USER_ID, null);
+        session.setAttribute(SessionConstant.IS_LOGIN, null);
+        session.setAttribute(SessionConstant.USER_ID, null);
+    }
+
+    private boolean isLogin(HttpSession session) {
+        return session.getAttribute(SessionConstant.IS_LOGIN) != null;
     }
 
 }
