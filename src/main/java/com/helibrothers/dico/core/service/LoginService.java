@@ -6,6 +6,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -31,8 +32,12 @@ public class LoginService {
     private final String NAVER_OAUTH_AUTHORIZE_URL = "https://nid.naver.com/oauth2.0/authorize";
     private final String NAVER_OAUTH_TOKEN_URL = "https://nid.naver.com/oauth2.0/token";
     private final String NAVER_OAUTH_PROFILE_URL = "https://openapi.naver.com/v1/nid/me";
-    private final String NAVER_CLIENT_ID = "CH1s15EkwPutdRu7tvjl";
-    private final String NAVER_CLIENT_SECRET = "reiD6_MQWL";
+
+    @Value("#{properties['naver.clientId']}")
+    private String naverClientId;
+
+    @Value("#{properties['naver.clientSecret']}")
+    private String naverClientSecret;
 
     final Logger logger = LoggerFactory.getLogger(WebController.class);
 
@@ -46,7 +51,7 @@ public class LoginService {
 
         buffer.append(NAVER_OAUTH_AUTHORIZE_URL);
         buffer.append("?client_id=");
-        buffer.append(NAVER_CLIENT_ID);
+        buffer.append(naverClientId);
         buffer.append("&response_type=code&redirect_uri=");
         buffer.append(NAVER_OAUTH_REDIRECT_URL);
         buffer.append("&state=");
@@ -60,9 +65,9 @@ public class LoginService {
 
         buffer.append(NAVER_OAUTH_TOKEN_URL);
         buffer.append("?client_id=");
-        buffer.append(NAVER_CLIENT_ID);
+        buffer.append(naverClientId);
         buffer.append("&client_secret=");
-        buffer.append(NAVER_CLIENT_SECRET);
+        buffer.append(naverClientSecret);
         buffer.append("&grant_type=authorization_code");
         buffer.append("&state=");
         buffer.append(state);
@@ -77,9 +82,9 @@ public class LoginService {
 
         buffer.append(NAVER_OAUTH_TOKEN_URL);
         buffer.append("?client_id=");
-        buffer.append(NAVER_CLIENT_ID);
+        buffer.append(naverClientId);
         buffer.append("&client_secret=");
-        buffer.append(NAVER_CLIENT_SECRET);
+        buffer.append(naverClientSecret);
         buffer.append("&grant_type=refresh_token");
         buffer.append("&refresh_token=");
         buffer.append(refreshToken);
