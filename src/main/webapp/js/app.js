@@ -3,11 +3,9 @@
  */
 "use strict";
 
-var app = null;
-
 (function() {
 
-    app = {
+    var app = {
 
         init: function() {
             var self = this;
