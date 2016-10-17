@@ -28,10 +28,12 @@ import java.security.SecureRandom;
 @Service
 @Transactional
 public class LoginService {
-    private final String NAVER_OAUTH_REDIRECT_URL = "http://localhost:8080/naverOauthCallback";
     private final String NAVER_OAUTH_AUTHORIZE_URL = "https://nid.naver.com/oauth2.0/authorize";
     private final String NAVER_OAUTH_TOKEN_URL = "https://nid.naver.com/oauth2.0/token";
     private final String NAVER_OAUTH_PROFILE_URL = "https://openapi.naver.com/v1/nid/me";
+
+    @Value("#{properties['naver.redirectURL']}")
+    private String naverOauthRedirectUrl;
 
     @Value("#{properties['naver.clientId']}")
     private String naverClientId;
@@ -53,7 +55,7 @@ public class LoginService {
         buffer.append("?client_id=");
         buffer.append(naverClientId);
         buffer.append("&response_type=code&redirect_uri=");
-        buffer.append(NAVER_OAUTH_REDIRECT_URL);
+        buffer.append(naverOauthRedirectUrl);
         buffer.append("&state=");
         buffer.append(state);
 
