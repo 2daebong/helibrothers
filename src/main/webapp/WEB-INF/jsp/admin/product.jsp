@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -124,7 +125,7 @@
 
     sImageUrl = '';
     bIsUpdate = false;
-    var appId = '652364014913917';
+    var appId = '<spring:eval expression="@properties['facebook.appId']"/>';
     var roleArn = 'arn:aws:iam::764006455036:role/adminLoginROle';
     var token = getFacebookTocken();
     var fbUserId;

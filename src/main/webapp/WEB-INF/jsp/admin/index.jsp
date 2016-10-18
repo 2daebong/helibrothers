@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +32,7 @@
         $.ajaxSetup({ cache: true });
         $.getScript('//connect.facebook.net/en_US/sdk.js', function(){
             FB.init({
-                appId      : '652364014913917',
+                appId      : '<spring:eval expression="@properties['facebook.appId']"/>',
                 xfbml      : true,
                 version    : 'v2.6'
             });
