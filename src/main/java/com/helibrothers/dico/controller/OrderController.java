@@ -5,6 +5,7 @@ import com.helibrothers.dico.core.service.OrderService;
 import com.helibrothers.dico.domain.Cart;
 import com.helibrothers.dico.domain.Order;
 import com.helibrothers.dico.domain.SessionConstant;
+import com.helibrothers.dico.domain.enums.OrderStatusCd;
 import com.helibrothers.dico.domain.response.ResultCd;
 import com.helibrothers.dico.exception.NotRegistUserInfoException;
 import org.apache.commons.lang3.StringUtils;
@@ -31,6 +32,16 @@ public class OrderController {
     @RequestMapping(value = "/api/order/{id}", method = RequestMethod.GET)
     public Order getOrder(@PathVariable Long id) {
         return orderService.findOne(id);
+    }
+
+    @RequestMapping(value = "/api/order/{id}", method = RequestMethod.PUT)
+    public void updateOrder(@PathVariable Long id, @RequestBody String orderStatus) {
+        Order order = orderService.findOne(id);
+
+        if(order != null) {
+            order.setStatus(OrderStatusCd.valueOf(orderStatus));
+            orderService.update(order);
+        }
     }
 
     @RequestMapping(value = "/api/order/cart", method = RequestMethod.POST)

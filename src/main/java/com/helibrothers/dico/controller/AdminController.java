@@ -5,6 +5,7 @@ import com.helibrothers.dico.core.service.OrderService;
 import com.helibrothers.dico.core.service.UserService;
 import com.helibrothers.dico.domain.User;
 import com.helibrothers.dico.domain.enums.ItemCategory;
+import com.helibrothers.dico.domain.enums.OrderStatusCd;
 import com.helibrothers.dico.domain.enums.StockUnitCd;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,6 +53,7 @@ public class AdminController {
 
         mv.setViewName("admin/order");
         mv.addObject("orders", orderService.findByUserId(userId));
+        mv.addObject("orderStatusEnums", OrderStatusCd.values());
 
         return mv;
     }
@@ -60,7 +62,9 @@ public class AdminController {
     public ModelAndView orderPrepare() {
         ModelAndView mv = new ModelAndView();
 
-        mv.setViewName("admin/orderPrepare");
+        mv.setViewName("admin/order");
+        mv.addObject("orders", orderService.findAll());
+        mv.addObject("orderStatusEnums", OrderStatusCd.values());
 
         return mv;
     }

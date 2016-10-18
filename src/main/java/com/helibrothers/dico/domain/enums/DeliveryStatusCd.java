@@ -4,8 +4,8 @@ package com.helibrothers.dico.domain.enums;
  * Created by LeeDaebeom-Mac on 2016. 8. 25..
  */
 public enum DeliveryStatusCd {
-    READY("준비"),
-    COMPLETE("배송완료");
+    PICKUP("픽업"),
+    DELIVERY("배달");
 
     private String nameKr;
 

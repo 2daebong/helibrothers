@@ -33,7 +33,7 @@ public class Delivery {
 
     public Delivery(UserInfo userInfo) {
         this.userInfo = userInfo;
-        this.status = DeliveryStatusCd.READY;
+        this.status = DeliveryStatusCd.DELIVERY;
     }
 
     public Long getId() {

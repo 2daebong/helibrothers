@@ -38,7 +38,7 @@ public class InfiniteRecursionTest {
         Order order = new Order();
         User user = new User();
         Delivery delivery = new Delivery();
-        delivery.setStatus(DeliveryStatusCd.READY);
+        delivery.setStatus(DeliveryStatusCd.DELIVERY);
         order.setUser(user);
         order.setDelivery(delivery);
 

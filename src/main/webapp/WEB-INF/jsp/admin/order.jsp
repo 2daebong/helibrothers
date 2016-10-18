@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,30 +14,171 @@
 <div class="container">
     <div class="main_text">
 
-        <table class="table table-hover" style="margin-top: 30px">
-            <tr>
-                <td>주문번호</td>
-                <td>사용자ID</td>
-                <td>주문시간</td>
-                <td>주소</td>
-                <td>전화번호</td>
-                <td>금액</td>
-                <td>배송상태 (수단)</td>
-                <td> </td>
-            </tr>
-            <c:forEach items="${orders}" var="order">
-            <tr class="clickable-row" onclick="detailView(${order.id})">
-                <td>${order.id}</td>
-                <td>${order.user.id}</td>
-                <td>${order.orderDate}</td>
-                <td>${order.user.userInfo.address}</td>
-                <td>${order.user.userInfo.phoneNumber}</td>
-                <td>${order.totalPrice}</td>
-                <td>${order.statusNameKr} (${order.statusNameKr})</td>
-                <td> </td>
-            </tr>
-            </c:forEach>
-        </table>
+        <ul class="nav nav-pills">
+            <li class="active"><a href="#item1">처리리스트</a></li>
+            <li><a href="#item2">완료리스트</a></li>
+            <li><a href="#item3">취소리스트</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="item1" class="tab-pane fade in active">
+                <h2>처리 목록</h2>
+                <br>
+                <h4>배송 전</h4>
+                <table id="del-before" class="table table-hover" style="margin-top: 30px">
+                    <tr>
+                        <td>주문번호</td>
+                        <td>사용자ID</td>
+                        <td>주문시간</td>
+                        <td>주소</td>
+                        <td>전화번호</td>
+                        <td>금액</td>
+                        <td>배송수단</td>
+                        <td>주문상태</td>
+                    </tr>
+                    <c:forEach items="${orders}" var="order">
+                        <c:if test="${order.status eq 'WAIT'}">
+                            <tr class="clickable-row" style="background-color: gold" onclick="detailView(${order.id})">
+                                <td>${order.id}</td>
+                                <td>${order.user.id}</td>
+                                <td>${order.orderDate}</td>
+                                <td>${order.user.userInfo.address}</td>
+                                <td>${order.user.userInfo.phoneNumber}</td>
+                                <td><fmt:formatNumber>${order.totalPrice}</fmt:formatNumber></td>
+                                <td>${order.deliveryStatusKr}</td>
+                                <td>
+                                    <select class="orderStatus form-control" data-id="${order.id}">
+                                        <option value="${order.status}">${order.orderStatusKr}</option>
+                                        <c:forEach items="${orderStatusEnums}" var="orderStatus">
+                                            <c:if test="${orderStatus ne order.status}">
+                                                <option value="${orderStatus}">${orderStatus.nameKr}</option>
+                                            </c:if>
+                                        </c:forEach>
+                                    </select>
+                                </td>
+                            </tr>
+                        </c:if>
+                    </c:forEach>
+                </table>
+                <br>
+                <h4>배송 중</h4>
+                <table id="del-ing" class="table table-hover" style="margin-top: 30px">
+                    <tr>
+                        <td>주문번호</td>
+                        <td>사용자ID</td>
+                        <td>주문시간</td>
+                        <td>주소</td>
+                        <td>전화번호</td>
+                        <td>금액</td>
+                        <td>배송수단</td>
+                        <td>주문상태</td>
+                    </tr>
+                    <c:forEach items="${orders}" var="order">
+                        <c:if test="${order.status eq 'ING'}">
+                            <tr class="clickable-row" style="background-color: palevioletred"
+                                onclick="detailView(${order.id})">
+                                <td>${order.id}</td>
+                                <td>${order.user.id}</td>
+                                <td>${order.orderDate}</td>
+                                <td>${order.user.userInfo.address}</td>
+                                <td>${order.user.userInfo.phoneNumber}</td>
+                                <td><fmt:formatNumber>${order.totalPrice}</fmt:formatNumber></td>
+                                <td>${order.deliveryStatusKr}</td>
+                                <td>
+                                    <select class="orderStatus form-control" data-id="${order.id}">
+                                        <option value="${order.status}">${order.orderStatusKr}</option>
+                                        <c:forEach items="${orderStatusEnums}" var="orderStatus">
+                                            <c:if test="${orderStatus ne order.status}">
+                                                <option value="${orderStatus}">${orderStatus.nameKr}</option>
+                                            </c:if>
+                                        </c:forEach>
+                                    </select>
+                                </td>
+                            </tr>
+                        </c:if>
+                    </c:forEach>
+                </table>
+            </div>
+            <div id="item2" class="tab-pane fade">
+                <br>
+                <h2>배송완료</h2>
+                <table id="del-complete" class="table table-hover" style="margin-top: 30px">
+                    <tr>
+                        <td>주문번호</td>
+                        <td>사용자ID</td>
+                        <td>주문시간</td>
+                        <td>주소</td>
+                        <td>전화번호</td>
+                        <td>금액</td>
+                        <td>배송수단</td>
+                        <td>주문상태</td>
+                    </tr>
+                    <c:forEach items="${orders}" var="order">
+                        <c:if test="${order.status eq 'COMPLETE'}">
+                            <tr class="clickable-row" style="background-color: darkgray"
+                                onclick="detailView(${order.id})">
+                                <td>${order.id}</td>
+                                <td>${order.user.id}</td>
+                                <td>${order.orderDate}</td>
+                                <td>${order.user.userInfo.address}</td>
+                                <td>${order.user.userInfo.phoneNumber}</td>
+                                <td><fmt:formatNumber>${order.totalPrice}</fmt:formatNumber></td>
+                                <td>${order.deliveryStatusKr}</td>
+                                <td>
+                                    <select class="orderStatus form-control" data-id="${order.id}">
+                                        <option value="${order.status}">${order.orderStatusKr}</option>
+                                        <c:forEach items="${orderStatusEnums}" var="orderStatus">
+                                            <c:if test="${orderStatus ne order.status}">
+                                                <option value="${orderStatus}">${orderStatus.nameKr}</option>
+                                            </c:if>
+                                        </c:forEach>
+                                    </select>
+                                </td>
+                            </tr>
+                        </c:if>
+                    </c:forEach>
+                </table>
+            </div>
+            <div id="item3" class="tab-pane fade">
+                <br>
+                <h2>취소 목록</h2>
+                <table id="del-cancel" class="table table-hover" style="margin-top: 30px">
+                    <tr>
+                        <td>주문번호</td>
+                        <td>사용자ID</td>
+                        <td>주문시간</td>
+                        <td>주소</td>
+                        <td>전화번호</td>
+                        <td>금액</td>
+                        <td>배송수단</td>
+                        <td>주문상태</td>
+                    </tr>
+                    <c:forEach items="${orders}" var="order">
+                        <c:if test="${order.status eq 'CANCEL'}">
+                            <tr class="clickable-row" onclick="detailView(${order.id})">
+                                <td>${order.id}</td>
+                                <td>${order.user.id}</td>
+                                <td>${order.orderDate}</td>
+                                <td>${order.user.userInfo.address}</td>
+                                <td>${order.user.userInfo.phoneNumber}</td>
+                                <td><fmt:formatNumber>${order.totalPrice}</fmt:formatNumber></td>
+                                <td>${order.deliveryStatusKr}</td>
+                                <td>
+                                    <select class="orderStatus form-control" data-id="${order.id}">
+                                        <option value="${order.status}">${order.orderStatusKr}</option>
+                                        <c:forEach items="${orderStatusEnums}" var="orderStatus">
+                                            <c:if test="${orderStatus ne order.status}">
+                                                <option value="${orderStatus}">${orderStatus.nameKr}</option>
+                                            </c:if>
+                                        </c:forEach>
+                                    </select>
+                                </td>
+                            </tr>
+                        </c:if>
+                    </c:forEach>
+                </table>
+            </div>
+        </div>
     </div>
 
     <%--<!-- Trigger the modal with a button -->--%>
@@ -75,12 +217,33 @@
         </div>
     </div>
 
-    </div>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
+    $('.orderStatus').click(function (e) {
+        e.stopPropagation();
+    });
+
+    $('.orderStatus').change(function () {
+        console.log($(this).data('id'), this.value);
+
+        var id = $(this).data('id');
+        var orderStatus = this.value;
+
+        $.ajax({
+            url: "/api/order/" + id,
+            type: 'PUT',
+            data: orderStatus,
+            contentType: "application/json; charset=utf-8",
+            success: function (order) {
+                location.reload();
+            }
+        });
+    });
+
     function detailView(id) {
         $('#detailModal_row').html('');
 
@@ -92,7 +255,7 @@
                 var orderItems = order.orderItems;
                 var html = "";
                 var allItemTotalPrice = 0;
-                for(var i=0; i<orderItems.length; i++) {
+                for (var i = 0; i < orderItems.length; i++) {
                     var orderItem = orderItems[i];
                     html += "\<tr\>" +
                             "\<td\>\<img src\=\"" + orderItem.item.imageUrl + "\" width\=\"80px\" height\=\"80px\"\>\<\/td\>" +
@@ -111,6 +274,14 @@
                 console.log("fail. code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
                 alert("fail. code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
             }
+        });
+    }
+
+    // Main Tab Event
+    var navPills = $(".nav-pills a");
+    if (navPills) {
+        navPills.click(function () {
+            $(this).tab('show');
         });
     }
 </script>

@@ -163,10 +163,10 @@
                             </div>
                             </c:if>
                         </c:forEach>
-                        <div class="clear"></div>
                     </div>
                 </div>
             </div>
+            <div class="clear"></div>
             <div id="item2" class="tab-pane fade">
                 <div class="row contents">
                     <div class="col-sm-6">
@@ -184,10 +184,10 @@
                             </div>
                             </c:if>
                         </c:forEach>
-                        <div class="clear"></div>
                     </div>
                 </div>
             </div>
+            <div class="clear"></div>
             <div id="item3" class="tab-pane fade">
                 <div class="row contents">
                     <div class="col-sm-6">
@@ -205,10 +205,10 @@
                             </div>
                             </c:if>
                         </c:forEach>
-                        <div class="clear"></div>
                     </div>
                 </div>
             </div>
+            <div class="clear"></div>
             <div id="item4" class="tab-pane fade">
                 <div class="row contents">
                     <div class="col-sm-6">
@@ -226,10 +226,10 @@
                             </div>
                             </c:if>
                         </c:forEach>
-                        <div class="clear"></div>
                     </div>
                 </div>
             </div>
+            <div class="clear"></div>
             <div id="item5" class="tab-pane fade">
                 <div class="row contents">
                     <div class="col-sm-6">
@@ -247,13 +247,12 @@
                             </div>
                             </c:if>
                         </c:forEach>
-                        <div class="clear">
                     </div>
                 </div>
             </div>
         </div>
-        <!-- end of tab contetns area -->
         <div class="clear"></div>
+        <!-- end of tab contetns area -->
     </div>
 </div>
 <!-- end of section 2 -->

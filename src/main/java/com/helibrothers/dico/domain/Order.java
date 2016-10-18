@@ -48,7 +48,7 @@ public class Order {
     }
 
     public void cancel() {
-        if(delivery.getStatus() == DeliveryStatusCd.COMPLETE) {
+        if(status == OrderStatusCd.COMPLETE) {
             throw new RuntimeException("이미 배송완료된 상품은 취소가 불가능합니다.");
         }
 
@@ -105,7 +105,11 @@ public class Order {
         return delivery;
     }
 
-    public String getStatusNameKr() {
+    public String getOrderStatusKr() {
+        return this.status.getNameKr();
+    }
+
+    public String getDeliveryStatusKr() {
         return this.delivery.getStatus().getNameKr();
     }
 

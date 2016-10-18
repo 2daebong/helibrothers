@@ -83,4 +83,12 @@ public class OrderService {
     public Order findOne(Long orderId) {
         return orderRepository.findOne(orderId);
     }
+
+    public void update(Order order) {
+        orderRepository.save(order);
+    }
+
+    public List<Order> findAll() {
+        return orderRepository.findAll();
+    }
 }
