@@ -50,9 +50,16 @@ var app = null;
             toast.fadeIn(500);
         },
 
-        hideToast: function() {
+        hideToast: function(time) {
             var toast = $('#alert');
-            toast.fadeOut(500);
+
+            if (time) {
+                setTimeout(function() {
+                    toast.fadeOut(500);
+                }, time);
+            } else {
+                toast.fadeOut(500);
+            }
         },
 
         showModalPopupForOrder: function(orderIndex) {
@@ -93,8 +100,12 @@ var app = null;
                 data: JSON.stringify(cartItem),
                 dataType: "json",
                 contentType : "application/json; charset=utf-8",
-                success: function(){
-                    location.href = "/cartList/" + userId;
+                success: function(data){
+                    app.hideModalPopupForOrder();
+                    app.showToast("상품이 장바구니에 담겼습니다.");
+                    app.hideToast(2000);
+                    console.log(data);
+                    //location.href = "/cartList/" + userId;
                 },
                 error : app.ajaxError
             });
@@ -112,6 +123,7 @@ var app = null;
                 success: function(result) {
                     if(result == 'SUCCESS') {
                         alert('주문이 완료되었습니다.');
+                        location.href = "/orderList";
                     } else if(result == 'NEED_USERINFO') {
                         location.href = "/modifyUserInfo";
                         return
