@@ -124,15 +124,15 @@
                     <tbody>
                         <tr>
                             <td>수령인</td>
-                            <td>공경율</td>
+                            <td>${userName}</td>
                         </tr>
                         <tr>
                             <td>연락처</td>
-                            <td>010-1234-5678</td>
+                            <td>${phoneNumber}</td>
                         </tr>
                         <tr>
                             <td>주소지</td>
-                            <td>부산광역시 센텀구 기타동 야채사요 빌딩 20층</td>
+                            <td>${userAddress}</td>
                         </tr>
                         <tr>
                             <td>요청사항</td>
